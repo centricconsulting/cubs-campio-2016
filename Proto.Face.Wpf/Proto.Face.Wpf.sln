@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proto.Face.Detection.Wpf", "Proto.Face.Wpf\Proto.Face.Detection.Wpf.csproj", "{ECD35A6A-954F-432C-9CA3-DF6584432773}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proto.Face.Identification.Wpf", "Proto.Face.Identification.Wpf\Proto.Face.Identification.Wpf.csproj", "{DA9B9873-3A50-4665-94E9-DE3C325A1228}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECD35A6A-954F-432C-9CA3-DF6584432773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECD35A6A-954F-432C-9CA3-DF6584432773}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECD35A6A-954F-432C-9CA3-DF6584432773}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECD35A6A-954F-432C-9CA3-DF6584432773}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA9B9873-3A50-4665-94E9-DE3C325A1228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA9B9873-3A50-4665-94E9-DE3C325A1228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA9B9873-3A50-4665-94E9-DE3C325A1228}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA9B9873-3A50-4665-94E9-DE3C325A1228}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
