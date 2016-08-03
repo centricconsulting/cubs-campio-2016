@@ -10,6 +10,7 @@ using Android.Content.PM;
 using System;
 
 
+
 namespace CarmeraUseRecipe
 {
 	[Activity (Label = "CarmeraUseRecipe", MainLauncher = true, Icon = "@mipmap/icon")]
@@ -32,7 +33,6 @@ namespace CarmeraUseRecipe
 
 			Button button = FindViewById<Button> (Resource.Id.myButton);
 			_imageView = FindViewById<ImageView>(Resource.Id.imageView1);
-
 			//_imageView.Click += TakeAPicture;
 			button.Click += TakeAPicture;
 		
@@ -82,6 +82,8 @@ namespace CarmeraUseRecipe
 		private void TakeAPicture (object sender, EventArgs eventArgs)
 		{
 			Intent intent = new Intent (MediaStore.ActionImageCapture);
+
+
 			App._file = new File (App._dir, string.Format ("myPhoto_{0}.jpg", Guid.NewGuid ()));
 			intent.PutExtra (MediaStore.ExtraOutput, Android.Net.Uri.FromFile (App._file));
 			StartActivityForResult (intent, 0);
