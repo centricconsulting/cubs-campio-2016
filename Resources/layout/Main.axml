@@ -13,24 +13,17 @@
         android:typeface="normal"
         android:textSize="50dp"
         android:textStyle="bold" />
-    <ImageView
-        android:src="@android:drawable/ic_menu_gallery"
-        android:layout_width="fill_parent"
-        android:layout_height="300.0dp"
-        android:id="@+id/imageView1"
-        android:adjustViewBounds="true"
-        android:layout_marginBottom="0.0dp"
-        android:layout_marginRight="0.0dp" />
     <EditText
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/email"
+        android:hint="@string/email"
         android:id="@+id/editText1" />
     <EditText
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="password"
         android:id="@+id/editText2" />
     <Button
         android:id="@+id/myButton"
