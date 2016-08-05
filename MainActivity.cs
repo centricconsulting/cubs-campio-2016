@@ -13,7 +13,7 @@ using System;
 
 namespace CarmeraUseRecipe
 {
-	[Activity (Label = "CarmeraUseRecipe", MainLauncher = true, Icon = "@mipmap/icon")]
+	[Activity (Label = "CarmeraUseRecipe", Icon = "@mipmap/icon")]
 	public class MainActivity : Activity
 	{
 		int count = 1;
@@ -26,16 +26,17 @@ namespace CarmeraUseRecipe
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
-			if (!IsThereAnAppToTakePictures ())
-				return;
 
-			CreateDirectoryForPictures ();
+			if (!IsThereAnAppToTakePictures()) return;
 
-			Button button = FindViewById<Button> (Resource.Id.myButton);
+			CreateDirectoryForPictures();
+
 			_imageView = FindViewById<ImageView>(Resource.Id.imageView1);
-			_imageView.Click += TakeAPicture;
-			button.Click += TakeAPicture;
-		
+			Button myButton = FindViewById<Button>(Resource.Id.myButton);
+
+			OpenCameraAndTakePicture();
+			myButton.Click += TakeAPicture;
+
 		}
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -48,13 +49,16 @@ namespace CarmeraUseRecipe
 			SendBroadcast (mediaScanIntent);
 
 			int height = Resources.DisplayMetrics.HeightPixels;
-			int width = _imageView.Height; 
+			int width = Resources.DisplayMetrics.WidthPixels; 
 			App.bitmap = App._file.Path.LoadAndResizeBitmap (width, height);
 
 			if (App.bitmap != null) {
 				_imageView.SetImageBitmap (App.bitmap);
 				App.bitmap = null;
 			}
+
+			var response = FaceInterface.ReturnFaceFromPicture(App._file);
+
 			GC.Collect ();
 		}
 
@@ -78,6 +82,16 @@ namespace CarmeraUseRecipe
 		}
 
 
+		private void OpenCameraAndTakePicture()
+		{
+			Intent intent = new Intent(MediaStore.ActionImageCapture);
+
+
+			App._file = new File(App._dir, string.Format("myPhoto_{0}.jpg", Guid.NewGuid()));
+			intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(App._file));
+			StartActivityForResult(intent, 0);
+
+		}
 
 		private void TakeAPicture(object sender, EventArgs eventArgs)
 		{
@@ -87,13 +101,7 @@ namespace CarmeraUseRecipe
 			App._file = new File(App._dir, string.Format("myPhoto_{0}.jpg", Guid.NewGuid()));
 			intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(App._file));
 			StartActivityForResult(intent, 0);
-
-			var response = FaceInterface.ReturnFaceFromPicture(App._file);
-
-
 		}
-
-
 	}
 }
 

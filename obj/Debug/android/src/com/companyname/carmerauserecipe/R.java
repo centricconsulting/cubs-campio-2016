@@ -1102,11 +1102,13 @@ containing a value of this type.
         public static final int icon=0x7f0a002a;
         public static final int ifRoom=0x7f0a0011;
         public static final int image=0x7f0a0027;
-        public static final int imageView1=0x7f0a003d;
+        public static final int imageView1=0x7f0a0041;
+        public static final int imageView2=0x7f0a003d;
         public static final int listMode=0x7f0a0006;
         public static final int list_item=0x7f0a0029;
         public static final int middle=0x7f0a0018;
-        public static final int myButton=0x7f0a0040;
+        public static final int myButton=0x7f0a0042;
+        public static final int myButton1=0x7f0a0040;
         public static final int never=0x7f0a0012;
         public static final int none=0x7f0a0019;
         public static final int normal=0x7f0a0007;
@@ -1186,8 +1188,8 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f040015;
         public static final int abc_search_view=0x7f040016;
         public static final int abc_simple_decor=0x7f040017;
-        public static final int main=0x7f040018;
-        public static final int recognitionpage=0x7f040019;
+        public static final int login=0x7f040018;
+        public static final int main=0x7f040019;
         public static final int support_simple_spinner_dropdown_item=0x7f04001a;
     }
     public static final class mipmap {

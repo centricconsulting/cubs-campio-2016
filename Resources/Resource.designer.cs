@@ -874,11 +874,11 @@ namespace CarmeraUseRecipe
 			// aapt resource value: 0x7f0a0015
 			public const int dropdown = 2131361813;
 			
-			// aapt resource value: 0x7f0a003d
-			public const int editText1 = 2131361853;
-			
 			// aapt resource value: 0x7f0a003e
-			public const int editText2 = 2131361854;
+			public const int editText1 = 2131361854;
+			
+			// aapt resource value: 0x7f0a003f
+			public const int editText2 = 2131361855;
 			
 			// aapt resource value: 0x7f0a0030
 			public const int edit_query = 2131361840;
@@ -907,8 +907,11 @@ namespace CarmeraUseRecipe
 			// aapt resource value: 0x7f0a0027
 			public const int image = 2131361831;
 			
-			// aapt resource value: 0x7f0a0040
-			public const int imageView1 = 2131361856;
+			// aapt resource value: 0x7f0a0041
+			public const int imageView1 = 2131361857;
+			
+			// aapt resource value: 0x7f0a003d
+			public const int imageView2 = 2131361853;
 			
 			// aapt resource value: 0x7f0a0006
 			public const int listMode = 2131361798;
@@ -919,8 +922,11 @@ namespace CarmeraUseRecipe
 			// aapt resource value: 0x7f0a0018
 			public const int middle = 2131361816;
 			
-			// aapt resource value: 0x7f0a003f
-			public const int myButton = 2131361855;
+			// aapt resource value: 0x7f0a0042
+			public const int myButton = 2131361858;
+			
+			// aapt resource value: 0x7f0a0040
+			public const int myButton1 = 2131361856;
 			
 			// aapt resource value: 0x7f0a0012
 			public const int never = 2131361810;
@@ -1108,10 +1114,10 @@ namespace CarmeraUseRecipe
 			public const int abc_simple_decor = 2130968599;
 			
 			// aapt resource value: 0x7f040018
-			public const int Main = 2130968600;
+			public const int Login = 2130968600;
 			
 			// aapt resource value: 0x7f040019
-			public const int RecognitionPage = 2130968601;
+			public const int Main = 2130968601;
 			
 			// aapt resource value: 0x7f04001a
 			public const int support_simple_spinner_dropdown_item = 2130968602;
