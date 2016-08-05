@@ -9,7 +9,8 @@
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <application android:allowBackup="true" android:icon="@mipmap/icon" android:label="@string/app_name" android:name="android.app.Application" android:debuggable="true">
-    <activity android:icon="@mipmap/icon" android:label="CarmeraUseRecipe" android:name="md56f06d27c34397aa5f062035d2b78c88a.MainActivity">
+    <activity android:icon="@mipmap/icon" android:label="CarmeraUseRecipe" android:name="md56f06d27c34397aa5f062035d2b78c88a.MainActivity" />
+    <activity android:icon="@mipmap/icon" android:label="CarmeraUseRecipe" android:name="md56f06d27c34397aa5f062035d2b78c88a.LoginActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

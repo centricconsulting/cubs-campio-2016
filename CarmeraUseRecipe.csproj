@@ -60,6 +60,7 @@
     <Compile Include="App.cs" />
     <Compile Include="BitmapHelpers.cs" />
     <Compile Include="FaceInterface.cs" />
+    <Compile Include="LoginScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -75,7 +76,7 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\layout\RecognitionPage.axml" />
+    <AndroidResource Include="Resources\layout\Login.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

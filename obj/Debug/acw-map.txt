@@ -2,6 +2,10 @@ CarmeraUseRecipe.MainActivity, CarmeraUseRecipe;md56f06d27c34397aa5f062035d2b78c
 CarmeraUseRecipe.MainActivity, CarmeraUseRecipe, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f06d27c34397aa5f062035d2b78c88a.MainActivity
 CarmeraUseRecipe.MainActivity;md56f06d27c34397aa5f062035d2b78c88a.MainActivity
 carmerauserecipe.MainActivity;md56f06d27c34397aa5f062035d2b78c88a.MainActivity
+CarmeraUseRecipe.LoginActivity, CarmeraUseRecipe;md56f06d27c34397aa5f062035d2b78c88a.LoginActivity
+CarmeraUseRecipe.LoginActivity, CarmeraUseRecipe, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f06d27c34397aa5f062035d2b78c88a.LoginActivity
+CarmeraUseRecipe.LoginActivity;md56f06d27c34397aa5f062035d2b78c88a.LoginActivity
+carmerauserecipe.LoginActivity;md56f06d27c34397aa5f062035d2b78c88a.LoginActivity
 Android.Support.V4.App.FragmentManager/IOnBackStackChangedListenerImplementor, Xamarin.Android.Support.v13;mono.android.support.v4.app.FragmentManager_OnBackStackChangedListenerImplementor
 Android.Support.V4.App.FragmentManager+IOnBackStackChangedListenerImplementor, Xamarin.Android.Support.v13, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.android.support.v4.app.FragmentManager_OnBackStackChangedListenerImplementor
 Android.Support.V4.App.FragmentManager.IOnBackStackChangedListenerImplementor;mono.android.support.v4.app.FragmentManager_OnBackStackChangedListenerImplementor
