@@ -93,6 +93,7 @@ namespace CarmeraUseRecipe
 
 		}
 
+		// Yeah, its not great. still figuring out how to do it without the same method two different ways. 
 		private void TakeAPicture(object sender, EventArgs eventArgs)
 		{
 			Intent intent = new Intent(MediaStore.ActionImageCapture);
