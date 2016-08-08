@@ -8,8 +8,7 @@ using Android.Provider;
 using System.Collections.Generic;
 using Android.Content.PM;
 using System;
-
-
+using Android.Util;
 
 namespace CarmeraUseRecipe
 {
@@ -57,7 +56,9 @@ namespace CarmeraUseRecipe
 				App.bitmap = null;
 			}
 
-			var response = FaceInterface.ReturnFaceFromPicture(App._file);
+			var response =  FaceInterface.ReturnFaceFromPicture(App._file);
+			if (response.IsAMatch == true)
+				populateFacialMatch(response); 
 
 			GC.Collect ();
 		}
@@ -102,6 +103,16 @@ namespace CarmeraUseRecipe
 			App._file = new File(App._dir, string.Format("myPhoto_{0}.jpg", Guid.NewGuid()));
 			intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(App._file));
 			StartActivityForResult(intent, 0);
+		}
+
+		private void populateFacialMatch(FacialRecognitionResponse response)
+		{ 
+			TextView NameOfResponse = FindViewById<TextView>(Resource.Id.NameOfResponse);
+			string responseString = response.ConfidenceLevel.ToString() + "% Match: " + response.Name;
+
+			NameOfResponse.Text = responseString;
+
+			NameOfResponse.SetTextSize(ComplexUnitType.Dip, 21f);
 		}
 	}
 }

@@ -100,9 +100,6 @@ class MonoPackageManager_Resources {
 		/* We need to ensure that "CarmeraUseRecipe.dll" comes first in this list. */
 		"CarmeraUseRecipe.dll",
 		"Java.Interop.dll",
-		"Xamarin.Android.Support.v13.dll",
-		"Xamarin.Android.Support.v4.dll",
-		"Xamarin.Android.Support.v7.AppCompat.dll",
 		"System.ServiceModel.Internals.dll",
 		"System.Threading.dll",
 		"System.Runtime.dll",

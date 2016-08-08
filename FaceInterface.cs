@@ -13,10 +13,14 @@ namespace CarmeraUseRecipe
 {
 	public static class FaceInterface
 	{
-		public static string ReturnFaceFromPicture(File file)
+		public static FacialRecognitionResponse ReturnFaceFromPicture(File file)
 		{
-			return "Object Jordan Made";
+			//send
+			var response = "response from FaceAPI";
+
+			return new FacialRecognitionResponse();
 		}
+
 	}
 }
 
