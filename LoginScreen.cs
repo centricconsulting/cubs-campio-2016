@@ -1,14 +1,7 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
-using Java.IO;
-using Android.Graphics;
 using Android.Content;
-using Android.Provider;
-using System.Collections.Generic;
-using Android.Content.PM;
-using System;
-using Android.Content.Res;
 
 namespace CarmeraUseRecipe
 {
@@ -21,7 +14,7 @@ namespace CarmeraUseRecipe
 			// Create your application here
 			SetContentView(Resource.Layout.Login);
 
-			Button loginButton = FindViewById<Button>(Resource.Id.myButton1);
+			Button loginButton = FindViewById<Button>(Resource.Id.loginButton1);
 
 			loginButton.Click += (sender, e) =>
 			{

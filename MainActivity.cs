@@ -32,10 +32,10 @@ namespace CarmeraUseRecipe
 			CreateDirectoryForPictures();
 
 			_imageView = FindViewById<ImageView>(Resource.Id.imageView1);
-			Button myButton = FindViewById<Button>(Resource.Id.myButton);
+			Button takeNewPhotoButton = FindViewById<Button>(Resource.Id.btnTakeNewPhoto);
 
 			OpenCameraAndTakePicture();
-			myButton.Click += TakeAPicture;
+			takeNewPhotoButton.Click += TakeAPicture;
 
 		}
 

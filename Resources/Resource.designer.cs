@@ -812,7 +812,7 @@ namespace CarmeraUseRecipe
 		{
 			
 			// aapt resource value: 0x7f0a003c
-			public const int Title = 2131361852;
+			public const int LoginTitleView = 2131361852;
 			
 			// aapt resource value: 0x7f0a001c
 			public const int action_bar = 2131361820;
@@ -856,6 +856,9 @@ namespace CarmeraUseRecipe
 			// aapt resource value: 0x7f0a0016
 			public const int beginning = 2131361814;
 			
+			// aapt resource value: 0x7f0a0042
+			public const int btnTakeNewPhoto = 2131361858;
+			
 			// aapt resource value: 0x7f0a002d
 			public const int checkbox = 2131361837;
 			
@@ -873,12 +876,6 @@ namespace CarmeraUseRecipe
 			
 			// aapt resource value: 0x7f0a0015
 			public const int dropdown = 2131361813;
-			
-			// aapt resource value: 0x7f0a003e
-			public const int editText1 = 2131361854;
-			
-			// aapt resource value: 0x7f0a003f
-			public const int editText2 = 2131361855;
 			
 			// aapt resource value: 0x7f0a0030
 			public const int edit_query = 2131361840;
@@ -911,7 +908,7 @@ namespace CarmeraUseRecipe
 			public const int imageView1 = 2131361857;
 			
 			// aapt resource value: 0x7f0a003d
-			public const int imageView2 = 2131361853;
+			public const int imgLogo = 2131361853;
 			
 			// aapt resource value: 0x7f0a0006
 			public const int listMode = 2131361798;
@@ -919,14 +916,11 @@ namespace CarmeraUseRecipe
 			// aapt resource value: 0x7f0a0029
 			public const int list_item = 2131361833;
 			
+			// aapt resource value: 0x7f0a0040
+			public const int loginButton1 = 2131361856;
+			
 			// aapt resource value: 0x7f0a0018
 			public const int middle = 2131361816;
-			
-			// aapt resource value: 0x7f0a0042
-			public const int myButton = 2131361858;
-			
-			// aapt resource value: 0x7f0a0040
-			public const int myButton1 = 2131361856;
 			
 			// aapt resource value: 0x7f0a0012
 			public const int never = 2131361810;
@@ -1002,6 +996,12 @@ namespace CarmeraUseRecipe
 			
 			// aapt resource value: 0x7f0a0020
 			public const int top_action_bar = 2131361824;
+			
+			// aapt resource value: 0x7f0a003e
+			public const int txtEmailAddress = 2131361854;
+			
+			// aapt resource value: 0x7f0a003f
+			public const int txtPassword = 2131361855;
 			
 			// aapt resource value: 0x7f0a0021
 			public const int up = 2131361825;
