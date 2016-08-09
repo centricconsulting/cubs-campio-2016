@@ -1070,7 +1070,7 @@ containing a value of this type.
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
     }
     public static final class id {
-        public static final int Title=0x7f0a003c;
+        public static final int LoginTitleView=0x7f0a003c;
         public static final int action_bar=0x7f0a001c;
         public static final int action_bar_activity_content=0x7f0a0001;
         public static final int action_bar_container=0x7f0a001b;
@@ -1085,14 +1085,13 @@ containing a value of this type.
         public static final int activity_chooser_view_content=0x7f0a0025;
         public static final int always=0x7f0a000f;
         public static final int beginning=0x7f0a0016;
+        public static final int btnTakeNewPhoto=0x7f0a0042;
         public static final int checkbox=0x7f0a002d;
         public static final int collapseActionView=0x7f0a0010;
         public static final int default_activity_button=0x7f0a0028;
         public static final int dialog=0x7f0a0014;
         public static final int disableHome=0x7f0a0009;
         public static final int dropdown=0x7f0a0015;
-        public static final int editText1=0x7f0a003e;
-        public static final int editText2=0x7f0a003f;
         public static final int edit_query=0x7f0a0030;
         public static final int end=0x7f0a0017;
         public static final int expand_activities_button=0x7f0a0026;
@@ -1102,11 +1101,12 @@ containing a value of this type.
         public static final int icon=0x7f0a002a;
         public static final int ifRoom=0x7f0a0011;
         public static final int image=0x7f0a0027;
-        public static final int imageView1=0x7f0a003d;
+        public static final int imageView1=0x7f0a0041;
+        public static final int imgLogo=0x7f0a003d;
         public static final int listMode=0x7f0a0006;
         public static final int list_item=0x7f0a0029;
+        public static final int loginButton1=0x7f0a0040;
         public static final int middle=0x7f0a0018;
-        public static final int myButton=0x7f0a0040;
         public static final int never=0x7f0a0012;
         public static final int none=0x7f0a0019;
         public static final int normal=0x7f0a0007;
@@ -1132,6 +1132,8 @@ containing a value of this type.
         public static final int tabMode=0x7f0a0008;
         public static final int title=0x7f0a002b;
         public static final int top_action_bar=0x7f0a0020;
+        public static final int txtEmailAddress=0x7f0a003e;
+        public static final int txtPassword=0x7f0a003f;
         public static final int up=0x7f0a0021;
         public static final int useLogo=0x7f0a000e;
         public static final int withText=0x7f0a0013;
@@ -1186,8 +1188,9 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f040015;
         public static final int abc_search_view=0x7f040016;
         public static final int abc_simple_decor=0x7f040017;
-        public static final int main=0x7f040018;
-        public static final int support_simple_spinner_dropdown_item=0x7f040019;
+        public static final int login=0x7f040018;
+        public static final int main=0x7f040019;
+        public static final int support_simple_spinner_dropdown_item=0x7f04001a;
     }
     public static final class mipmap {
         public static final int icon=0x7f030000;

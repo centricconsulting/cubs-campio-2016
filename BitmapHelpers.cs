@@ -17,6 +17,7 @@ public static class BitmapHelpers
 				: outWidth / width;
 
 		}
+
 		options.InSampleSize = inSampleSize; 
 		options.InJustDecodeBounds = false; 
 		Bitmap resizedBitmap = BitmapFactory.DecodeFile (fileName, options);
