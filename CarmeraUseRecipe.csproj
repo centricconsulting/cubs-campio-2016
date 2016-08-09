@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -60,7 +60,10 @@
     <Compile Include="App.cs" />
     <Compile Include="BitmapHelpers.cs" />
     <Compile Include="FaceInterface.cs" />
+<<<<<<< HEAD
     <Compile Include="LoginScreen.cs" />
+=======
+>>>>>>> 065e859... empty class to act as face API interface
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -76,7 +79,11 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
+<<<<<<< HEAD
     <AndroidResource Include="Resources\layout\Login.axml" />
+=======
+    <AndroidResource Include="Resources\layout\RecognitionPage.axml" />
+>>>>>>> 065e859... empty class to act as face API interface
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

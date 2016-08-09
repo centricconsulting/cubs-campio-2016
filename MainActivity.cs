@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.Widget;
 using Android.OS;
 using Java.IO;
@@ -32,11 +32,17 @@ namespace CarmeraUseRecipe
 			CreateDirectoryForPictures();
 
 			_imageView = FindViewById<ImageView>(Resource.Id.imageView1);
+<<<<<<< HEAD
 			Button takeNewPhotoButton = FindViewById<Button>(Resource.Id.btnTakeNewPhoto);
 
 			OpenCameraAndTakePicture();
 			takeNewPhotoButton.Click += TakeAPicture;
 
+=======
+			_imageView.Click += TakeAPicture;
+			button.Click += TakeAPicture;
+		
+>>>>>>> 065e859... empty class to act as face API interface
 		}
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -82,10 +88,24 @@ namespace CarmeraUseRecipe
 		}
 
 
+<<<<<<< HEAD
 		private void OpenCameraAndTakePicture()
 		{
 			Intent intent = new Intent(MediaStore.ActionImageCapture);
 
+=======
+
+		private void TakeAPicture(object sender, EventArgs eventArgs)
+		{
+			Intent intent = new Intent(MediaStore.ActionImageCapture);
+
+
+			App._file = new File(App._dir, string.Format("myPhoto_{0}.jpg", Guid.NewGuid()));
+			intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(App._file));
+			StartActivityForResult(intent, 0);
+
+			var response = FaceInterface.ReturnFaceFromPicture(App._file);
+>>>>>>> 065e859... empty class to act as face API interface
 
 			App._file = new File(App._dir, string.Format("myPhoto_{0}.jpg", Guid.NewGuid()));
 			intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(App._file));

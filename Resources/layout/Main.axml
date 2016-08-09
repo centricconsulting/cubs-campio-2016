@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+<<<<<<< HEAD
     <ImageView
         android:id="@+id/imageView1"
         android:src="@android:drawable/ic_menu_gallery"
@@ -11,6 +12,30 @@
         android:adjustViewBounds="true"
         android:layout_marginBottom="0.0dp"
         android:layout_marginRight="0.0dp" />
+=======
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Title"
+        android:adjustViewBounds="true"
+        android:layout_marginBottom="0.0dp"
+        android:text="@string/save_face"
+        android:typeface="normal"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+    <EditText
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:id="@+id/editText1" />
+    <EditText
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="password"
+        android:id="@+id/editText2" />
+>>>>>>> 065e859... empty class to act as face API interface
     <Button
         android:id="@+id/btnTakeNewPhoto"
         android:layout_width="match_parent"

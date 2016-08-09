@@ -1188,8 +1188,13 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f040015;
         public static final int abc_search_view=0x7f040016;
         public static final int abc_simple_decor=0x7f040017;
+<<<<<<< HEAD
         public static final int login=0x7f040018;
         public static final int main=0x7f040019;
+=======
+        public static final int main=0x7f040018;
+        public static final int recognitionpage=0x7f040019;
+>>>>>>> 065e859... empty class to act as face API interface
         public static final int support_simple_spinner_dropdown_item=0x7f04001a;
     }
     public static final class mipmap {
