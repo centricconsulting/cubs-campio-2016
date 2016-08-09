@@ -60,10 +60,7 @@
     <Compile Include="App.cs" />
     <Compile Include="BitmapHelpers.cs" />
     <Compile Include="FaceInterface.cs" />
-<<<<<<< HEAD
     <Compile Include="LoginScreen.cs" />
-=======
->>>>>>> 065e859... empty class to act as face API interface
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -79,11 +76,8 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
-<<<<<<< HEAD
     <AndroidResource Include="Resources\layout\Login.axml" />
-=======
     <AndroidResource Include="Resources\layout\RecognitionPage.axml" />
->>>>>>> 065e859... empty class to act as face API interface
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
