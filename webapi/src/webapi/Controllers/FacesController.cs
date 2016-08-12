@@ -9,17 +9,27 @@ using System.IO;
 namespace webapi.Controllers
 {
     [Route("api/[controller]")]
-    public class FaceController : Controller
+    public class FacesController : Controller
     {
-        private IHostingEnvironment _environment;
+        //private IHostingEnvironment _environment;
 
-        public FaceController(IHostingEnvironment environment)
+        //public FacesController(IHostingEnvironment environment)
+        //{
+        //    _environment = environment;
+        //}
+
+        //public FacesController()
+        //{
+        //}
+
+        // GET api/faces
+        [HttpGet]
+        public IEnumerable<string> Get()
         {
-            _environment = environment;
+            return new string[] { "face1", "face2" };
         }
 
-
-        // POST api/face/upload
+        // POST api/faces/upload
         [HttpPost]
         public async Task<IActionResult> Upload()
         {
@@ -40,7 +50,7 @@ namespace webapi.Controllers
             return Ok();
         }
 
-        // POST api/face/register
+        // POST api/faces/register
         [HttpPost]
         public async Task<IActionResult> Register()
         {

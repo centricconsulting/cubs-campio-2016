@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "aa2bfa2aa40bfa33d8c01418ebfef0aeb87bf430"
+    "signature": "32300c116a59297084dfbc2a740c30411daa67f0"
   },
   "compilationOptions": {
     "defines": [
@@ -28,7 +28,8 @@
           "Microsoft.Extensions.Logging.Console": "1.0.0",
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-          "Swashbuckle": "6.0.0-beta901"
+          "Swashbuckle": "6.0.0-beta901",
+          "Microsoft.ProjectOxford.Face": "1.1.0"
         },
         "runtime": {
           "webapi.dll": {}
@@ -1177,6 +1178,17 @@
         },
         "compile": {
           "lib/netstandard1.1/Microsoft.Net.Http.Headers.dll": {}
+        }
+      },
+      "Microsoft.ProjectOxford.Face/1.1.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Microsoft.ProjectOxford.Face.dll": {}
+        },
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Microsoft.ProjectOxford.Face.dll": {}
         }
       },
       "Newtonsoft.Json/9.0.1": {
@@ -3382,6 +3394,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-1lr92itF1fKR2oEQ6gk1IUsuCgp7UMlf/b1sjlAyuDeUnttj39ra59GQHYpomglJX1UVNpi1/cSBbEsXoNeIhw=="
+    },
+    "Microsoft.ProjectOxford.Face/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-df1kQa8UoOjOw5DPXNNyAs2KVu1BFkq7fgS+qFHQO+u1g6Vz7DRrx+vvepyo2WYBoHWCw2GM1NeOqLdD4gHlRQ=="
     },
     "Newtonsoft.Json/9.0.1": {
       "type": "package",
