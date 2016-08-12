@@ -37,6 +37,9 @@ namespace webapi
 
             // Inject an implementation of ISwaggerProvider with defaulted settings applied
             services.AddSwaggerGen();
+
+            // Inject Face API client implementation
+            services.AddFaceService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

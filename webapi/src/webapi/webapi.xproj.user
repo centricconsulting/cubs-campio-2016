@@ -3,5 +3,6 @@
   <PropertyGroup>
     <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
     <AutoRefresh>false</AutoRefresh>
+    <NameOfLastUsedPublishProfile>face-webapi - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

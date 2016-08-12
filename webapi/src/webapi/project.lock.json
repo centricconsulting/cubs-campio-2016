@@ -1459,6 +1459,18 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
+      "Microsoft.ProjectOxford.Face/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.8"
+        },
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Microsoft.ProjectOxford.Face.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Microsoft.ProjectOxford.Face.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -4722,6 +4734,16 @@
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.json"
+      ]
+    },
+    "Microsoft.ProjectOxford.Face/1.1.0": {
+      "sha512": "df1kQa8UoOjOw5DPXNNyAs2KVu1BFkq7fgS+qFHQO+u1g6Vz7DRrx+vvepyo2WYBoHWCw2GM1NeOqLdD4gHlRQ==",
+      "type": "package",
+      "path": "Microsoft.ProjectOxford.Face/1.1.0",
+      "files": [
+        "Microsoft.ProjectOxford.Face.1.1.0.nupkg.sha512",
+        "Microsoft.ProjectOxford.Face.nuspec",
+        "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Microsoft.ProjectOxford.Face.dll"
       ]
     },
     "Microsoft.VisualBasic/10.0.1": {
@@ -9488,6 +9510,7 @@
       "Microsoft.Extensions.Logging.Debug >= 1.0.0",
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.0.0",
       "Microsoft.NETCore.App >= 1.0.0",
+      "Microsoft.ProjectOxford.Face >= 1.1.0",
       "Swashbuckle >= 6.0.0-beta901"
     ],
     ".NETCoreApp,Version=v1.0": []
