@@ -30,7 +30,7 @@ namespace webapi.Controllers
         }
 
         // POST api/faces/upload
-        [HttpPost]
+        [HttpPost("Upload")]
         public async Task<IActionResult> Upload()
         {
             //var uploads = Path.Combine(_environment.WebRootPath, "uploads");
@@ -51,7 +51,7 @@ namespace webapi.Controllers
         }
 
         // POST api/faces/register
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register()
         {
             return Ok();
