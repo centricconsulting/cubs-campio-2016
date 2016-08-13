@@ -88,6 +88,7 @@
 --reference:C:\Users\setia\.nuget\packages\Microsoft.Extensions.Primitives\1.0.0\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll
 --reference:C:\Users\setia\.nuget\packages\Microsoft.Extensions.WebEncoders\1.0.0\lib\netstandard1.0\Microsoft.Extensions.WebEncoders.dll
 --reference:C:\Users\setia\.nuget\packages\Microsoft.Net.Http.Headers\1.0.0\lib\netstandard1.1\Microsoft.Net.Http.Headers.dll
+--reference:C:\Users\setia\.nuget\packages\Microsoft.ProjectOxford.Face\1.1.0\lib\portable-net45+wp80+win8+wpa81+aspnetcore50\Microsoft.ProjectOxford.Face.dll
 --reference:C:\Users\setia\.nuget\packages\Microsoft.VisualBasic\10.0.1\ref\netstandard1.1\Microsoft.VisualBasic.dll
 --reference:C:\Users\setia\.nuget\packages\Microsoft.Win32.Primitives\4.0.1\ref\netstandard1.3\Microsoft.Win32.Primitives.dll
 --reference:C:\Users\setia\.nuget\packages\Microsoft.Win32.Registry\4.0.0\ref\netstandard1.3\Microsoft.Win32.Registry.dll
@@ -182,5 +183,7 @@
 --reference:C:\Users\setia\.nuget\packages\System.Xml.XPath\4.0.1\ref\netstandard1.3\System.Xml.XPath.dll
 --resource:"C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\obj\Release\netcoreapp1.0\webapidotnet-compile.deps.json",webapi.deps.json
 C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\Program.cs
+C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\ServiceExtensions.cs
 C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\Startup.cs
+C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\Controllers\FacesController.cs
 C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\Controllers\ValuesController.cs

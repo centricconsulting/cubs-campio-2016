@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0/",
-    "signature": "2bce2520db9508fd0fa153d9648071891d49d555"
+    "signature": "9f75d0554bba3f64c841ab6d3f31b094d0648e9a"
   },
   "compilationOptions": {
     "defines": [
@@ -28,7 +28,8 @@
           "Microsoft.Extensions.Logging.Console": "1.0.0",
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-          "Swashbuckle": "6.0.0-beta901"
+          "Swashbuckle": "6.0.0-beta901",
+          "Microsoft.ProjectOxford.Face": "1.1.0"
         },
         "compile": {
           "webapi.dll": {}
@@ -1114,6 +1115,14 @@
       },
       "Microsoft.NETCore.Targets/1.0.1": {},
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {},
+      "Microsoft.ProjectOxford.Face/1.1.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Microsoft.ProjectOxford.Face.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.1": {
         "dependencies": {
           "System.Collections": "4.0.11",
@@ -2660,7 +2669,8 @@
           "Microsoft.Extensions.Logging.Console": "1.0.0",
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-          "Swashbuckle": "6.0.0-beta901"
+          "Swashbuckle": "6.0.0-beta901",
+          "Microsoft.ProjectOxford.Face": "1.1.0"
         },
         "runtime": {
           "webapi.dll": {}
@@ -3746,6 +3756,14 @@
       },
       "Microsoft.NETCore.Targets/1.0.1": {},
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {},
+      "Microsoft.ProjectOxford.Face/1.1.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Microsoft.ProjectOxford.Face.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.1": {
         "dependencies": {
           "System.Collections": "4.0.11",
@@ -5589,6 +5607,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-SaToCvvsGMxTgtLv/BrFQ5IFMPRE1zpWbnqbpwykJa8W5XiX82CXI6K2o7yf5xS7EP6t/JzFLV0SIDuWpvBZVw=="
+    },
+    "Microsoft.ProjectOxford.Face/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-df1kQa8UoOjOw5DPXNNyAs2KVu1BFkq7fgS+qFHQO+u1g6Vz7DRrx+vvepyo2WYBoHWCw2GM1NeOqLdD4gHlRQ=="
     },
     "Microsoft.VisualBasic/10.0.1": {
       "type": "package",
