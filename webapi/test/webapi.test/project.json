@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0-*",
+
+  "testRunner": "xunit",
+  "dependencies": {
+    "Microsoft.AspNet.TestHost": "1.0.0-rc1-final",
+    "xunit": "2.2.0-beta2-build3300",
+    "webapi": "1.0.0-*",
+    "dotnet-test-xunit": "2.2.0-preview2-build1029",
+    "moq.netcore": "4.4.0-beta8"    
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ],
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0"
+        }
+      }
+    }
+  }
+
+}

@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Net.Http.Headers;
+using Microsoft.AspNet.Http;
+using Microsoft.ProjectOxford.Face;
 
 namespace webapi.Controllers
 {
@@ -12,32 +16,55 @@ namespace webapi.Controllers
     public class FaceController : Controller
     {
         private IHostingEnvironment _environment;
+        private IFaceServiceClient _faceService;
+        private string _personGroupId = "campio";
 
-        public FaceController(IHostingEnvironment environment)
+        public FaceController(IHostingEnvironment environment, IFaceServiceClient faceService)
         {
             _environment = environment;
+            _faceService = faceService;
         }
-
 
         // POST api/face/upload
         [HttpPost]
-        public async Task<IActionResult> Upload()
+        public async Task<IActionResult> Upload(Microsoft.AspNet.Http.IFormFile file)
         {
-            //var uploads = Path.Combine(_environment.WebRootPath, "uploads");
-            //foreach (var file in files)
-            //{
-            //    if (file.Length > 0)
-            //    {
-            //        using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create))
-            //        {
-            //            await file.CopyToAsync(fileStream);
-            //        }
-            //    }
-            //}
+            var response = new List<FaceModel>();
+            using (Stream s = file.OpenReadStream())
+            {
+                // DETECT faces in photo
+                var faces = await _faceService.DetectAsync(s);
+                // sort faces DETECTED by face id
+                var faceIds = faces.OrderBy(f => f.FaceId).Select(face => face.FaceId).ToArray();
+                // IDENTIFY faces DETECED
+                var identifyResults = await _faceService.IdentifyAsync(_personGroupId, faceIds);
 
+                foreach (var face in faces)
+                {
+                    var faceModel = new FaceModel();
+                    faceModel.FaceId = face.FaceId.ToString();
 
+                    // for each face DETECTED in photo, if any is IDENTIFIED
+                    if (identifyResults.Any(f => f.FaceId == face.FaceId))
+                    {
+                        // get the IDENTIFIED face
+                        var identifyResult = identifyResults.FirstOrDefault(f => f.FaceId == face.FaceId);
 
-            return Ok();
+                        // if the IDENTIFIED face has any possible CANDIDATES
+                        for (int i = 0; i < identifyResult.Candidates.Length; i++)
+                        {
+                            // get the CANDIDATE's name
+                            var candidateId = identifyResult.Candidates[i].PersonId;
+                            var person = await _faceService.GetPersonAsync(_personGroupId, candidateId);
+
+                            faceModel.Candidates.Add(new CandidateModel { PersonId = candidateId.ToString(), Confidence = identifyResult.Candidates[i].Confidence, PersonName = person.Name });
+                        }
+                    }
+                    response.Add(faceModel);
+                }
+            }
+
+            return Ok(response);
         }
 
         // POST api/face/register
@@ -46,6 +73,22 @@ namespace webapi.Controllers
         {
             return Ok();
         }
+    }
+
+    public class FaceModel
+    {
+        public string FaceId { get; set; }
+
+        public List<CandidateModel> Candidates { get; set; }
+    }
+
+    public class CandidateModel
+    {
+        public string PersonId { get; set; }
+
+        public string PersonName { get; set; }
+
+        public double Confidence { get; set; }
     }
 }
 
