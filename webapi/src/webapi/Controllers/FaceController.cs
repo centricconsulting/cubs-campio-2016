@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Net.Http.Headers;
-using Microsoft.AspNet.Http;
 using Microsoft.ProjectOxford.Face;
+using Microsoft.AspNetCore.Http;
 
 namespace webapi.Controllers
 {
@@ -27,7 +24,7 @@ namespace webapi.Controllers
 
         // POST api/face/upload
         [HttpPost]
-        public async Task<IActionResult> Upload(Microsoft.AspNet.Http.IFormFile file)
+        public async Task<IActionResult> Upload(IFormFile file)
         {
             var response = new List<FaceModel>();
             using (Stream s = file.OpenReadStream())
@@ -77,6 +74,11 @@ namespace webapi.Controllers
 
     public class FaceModel
     {
+        public FaceModel ()
+        {
+            Candidates = new List<CandidateModel>();
+        }
+
         public string FaceId { get; set; }
 
         public List<CandidateModel> Candidates { get; set; }
