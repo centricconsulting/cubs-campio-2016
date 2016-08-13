@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
     <AutoRefresh>false</AutoRefresh>
-    <NameOfLastUsedPublishProfile>face-webapi - Web Deploy</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>face-webapi - Web Deploy %282%29</NameOfLastUsedPublishProfile>
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
 </Project>

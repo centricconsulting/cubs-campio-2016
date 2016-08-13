@@ -23,7 +23,7 @@ namespace webapi.Controllers
         }
 
         // POST api/face/upload
-        [HttpPost]
+        [HttpPost("Upload")]
         public async Task<IActionResult> Upload(IFormFile file)
         {
             var response = new List<FaceModel>();
@@ -65,7 +65,7 @@ namespace webapi.Controllers
         }
 
         // POST api/face/register
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register()
         {
             return Ok();

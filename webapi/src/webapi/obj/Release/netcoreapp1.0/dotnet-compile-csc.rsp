@@ -8,8 +8,8 @@
 -debug:full
 -nostdlib
 -nologo
-"C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\obj\Release\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
--out:"C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\bin\Release\netcoreapp1.0\webapi.dll"
+"D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\obj\Release\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
+-out:"D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\bin\Release\netcoreapp1.0\webapi.dll"
 -r:"C:\Users\setia\.nuget\packages\Microsoft.ApplicationInsights\2.1.0\lib\dotnet5.4\Microsoft.ApplicationInsights.dll"
 -r:"C:\Users\setia\.nuget\packages\Microsoft.ApplicationInsights.AspNetCore\1.0.0\lib\netstandard1.6\Microsoft.ApplicationInsights.AspNetCore.dll"
 -r:"C:\Users\setia\.nuget\packages\Microsoft.AspNetCore.Antiforgery\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Antiforgery.dll"
@@ -178,9 +178,9 @@
 -r:"C:\Users\setia\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\setia\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll"
 -r:"C:\Users\setia\.nuget\packages\System.Xml.XPath\4.0.1\ref\netstandard1.3\System.Xml.XPath.dll"
--resource:"C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\obj\Release\netcoreapp1.0\webapidotnet-compile.deps.json",webapi.deps.json
-"C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\Program.cs"
-"C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\ServiceExtensions.cs"
-"C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\Startup.cs"
-"C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\Controllers\FacesController.cs"
-"C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\Controllers\ValuesController.cs"
+-resource:"D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\obj\Release\netcoreapp1.0\webapidotnet-compile.deps.json",webapi.deps.json
+"D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\Program.cs"
+"D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\ServiceExtensions.cs"
+"D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\Startup.cs"
+"D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\Controllers\FaceController.cs"
+"D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\Controllers\ValuesController.cs"

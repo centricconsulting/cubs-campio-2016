@@ -1,5 +1,5 @@
---temp-output:C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\obj\Release\netcoreapp1.0\
---out:C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\bin\Release\netcoreapp1.0\webapi.dll
+--temp-output:D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\obj\Release\netcoreapp1.0\
+--out:D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\bin\Release\netcoreapp1.0\webapi.dll
 --define:RELEASE
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -181,9 +181,9 @@
 --reference:C:\Users\setia\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\setia\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
 --reference:C:\Users\setia\.nuget\packages\System.Xml.XPath\4.0.1\ref\netstandard1.3\System.Xml.XPath.dll
---resource:"C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\obj\Release\netcoreapp1.0\webapidotnet-compile.deps.json",webapi.deps.json
-C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\Program.cs
-C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\ServiceExtensions.cs
-C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\Startup.cs
-C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\Controllers\FacesController.cs
-C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\Controllers\ValuesController.cs
+--resource:"D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\obj\Release\netcoreapp1.0\webapidotnet-compile.deps.json",webapi.deps.json
+D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\Program.cs
+D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\ServiceExtensions.cs
+D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\Startup.cs
+D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\Controllers\FaceController.cs
+D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\Controllers\ValuesController.cs
