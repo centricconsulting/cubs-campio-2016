@@ -22,11 +22,13 @@ namespace webapi.test
     {
         private readonly ITestOutputHelper _output;
         public IServiceProvider Services => TestApplicationEnvironment.Services;
+        private IStorageService _storageService;
 
         public FaceControllerUnitTest(ITestOutputHelper output)
         {
             _output = output;
-            Services.GetRequiredService<IStorageService>().Clear();
+            _storageService = Services.GetRequiredService<IStorageService>();
+            _storageService.Clear();
         }
 
         [Fact]
@@ -59,7 +61,7 @@ namespace webapi.test
                     new Person { PersonId = personId, Name = "Johannes" }
                     ));
 
-            var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), faceServiceMock.Object, Services.GetRequiredService<IStorageService>());
+            var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), faceServiceMock.Object, _storageService);
 
             // act 
             var result = await obj.Upload(fileMock.Object);
@@ -71,6 +73,44 @@ namespace webapi.test
             Assert.True((((OkObjectResult)result).Value as ResponseModel).Faces.Count == 1);
             Assert.True((((OkObjectResult)result).Value as ResponseModel).Faces[0].Candidates.Count == 1);
             Assert.Equal("Johannes", (((OkObjectResult)result).Value as ResponseModel).Faces[0].Candidates[0].PersonName);
+        }
+
+        [Fact]
+        public void register_RESULT_OK()
+        {
+            //// arrange
+            //var key = "test_key";
+            //_storageService.Add(key, "whatever object", null);
+            //Guid faceId = Guid.NewGuid();
+            //Guid personId = Guid.NewGuid();
+            //var faceServiceMock = new Mock<IFaceServiceClient>();
+            //var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), faceServiceMock.Object, _storageService);
+
+            //// act
+            //var result = obj.Acknowledge(key);
+
+            //// assert
+            //var storageObject = _storageService.Get(key);
+            //Assert.Null(storageObject);
+        }
+
+        [Fact]
+        public void acknowledge_RESULT_OK()
+        {
+            // arrange
+            var key = "test_key";
+            _storageService.Add(key, "whatever object", null);
+            Guid faceId = Guid.NewGuid();
+            Guid personId = Guid.NewGuid();
+            var faceServiceMock = new Mock<IFaceServiceClient>();
+            var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), faceServiceMock.Object, _storageService);
+
+            // act
+            var result = obj.Acknowledge(key);
+
+            // assert
+            var storageObject = _storageService.Get(key);
+            Assert.Null(storageObject);
         }
     }
 

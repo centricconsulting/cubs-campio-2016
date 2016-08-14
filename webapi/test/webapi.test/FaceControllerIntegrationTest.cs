@@ -22,11 +22,13 @@ namespace webapi.test
     {
         private readonly ITestOutputHelper _output;
         public IServiceProvider Services => TestApplicationEnvironment.Services;
+        private IStorageService _storageService;
 
         public FaceControllerIntegrationTest(ITestOutputHelper output)
         {
             _output = output;
-            Services.GetRequiredService<IStorageService>().Clear();
+            _storageService = Services.GetRequiredService<IStorageService>();
+            _storageService.Clear();
         }
 
         [Fact]
@@ -38,7 +40,7 @@ namespace webapi.test
             var fs = new FileStream(sampleFile, FileMode.Open); fs.Position = 0;
             fileMock.Setup(m => m.OpenReadStream()).Returns(fs);
 
-            var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), Services.GetRequiredService<IFaceServiceClient>(), Services.GetRequiredService<IStorageService>());
+            var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), Services.GetRequiredService<IFaceServiceClient>(), _storageService);
 
             // act 
             var result = await obj.Upload(fileMock.Object);
