@@ -12,6 +12,7 @@ using Microsoft.ProjectOxford.Face.Contract;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
+using webapi.Models;
 
 namespace webapi.test
 {

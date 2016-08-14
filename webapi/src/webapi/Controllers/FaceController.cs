@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.ProjectOxford.Face;
 using Microsoft.AspNetCore.Http;
+using Microsoft.ProjectOxford.Face.Contract;
+using webapi.Models;
 
 namespace webapi.Controllers
 {
@@ -31,6 +33,10 @@ namespace webapi.Controllers
             {
                 // DETECT faces in photo
                 var faces = await _faceService.DetectAsync(s);
+
+                // if no face detected, return with NotFound status
+                if (!faces.Any()) { return NotFound(); }
+
                 // sort faces DETECTED by face id
                 var faceIds = faces.OrderBy(f => f.FaceId).Select(face => face.FaceId).ToArray();
                 // IDENTIFY faces DETECED
@@ -38,8 +44,7 @@ namespace webapi.Controllers
 
                 foreach (var face in faces)
                 {
-                    var faceModel = new FaceModel();
-                    faceModel.FaceId = face.FaceId.ToString();
+                    var faceModel = new FaceModel(face);
 
                     // for each face DETECTED in photo, if any is IDENTIFIED
                     if (identifyResults.Any(f => f.FaceId == face.FaceId))
@@ -71,83 +76,4 @@ namespace webapi.Controllers
             return Ok();
         }
     }
-
-    public class FaceModel
-    {
-        public FaceModel ()
-        {
-            Candidates = new List<CandidateModel>();
-        }
-
-        public string FaceId { get; set; }
-
-        public List<CandidateModel> Candidates { get; set; }
-    }
-
-    public class CandidateModel
-    {
-        public string PersonId { get; set; }
-
-        public string PersonName { get; set; }
-
-        public double Confidence { get; set; }
-    }
 }
-
-
-
-
-//// GET: Face
-//public async Task<HttpResponseMessage> Post()
-//{
-//    if (!Request.Content.IsMimeMultipartContent())
-//    {
-//        throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-//    }
-
-//    var x = GetContactIdForUser();
-
-//    var provider = new BlobStorageMultipartStreamProvider()
-//    {
-//        ConnectionString = ConfigurationManager.AppSettings[DomainConstants.ACCOUNT_STORAGE_CONNECTION_STRING_KEY],
-//        ContainerName = ConfigurationManager.AppSettings[DomainConstants.AVATAR_IMAGE_INPUT_CONTAINER_NAME_KEY],
-//        FileName = string.Format("{0}.jpg", x)
-//    };
-
-//    try
-//    {
-//        await Request.Content.ReadAsMultipartAsync(provider);
-//        return Request.CreateResponse(HttpStatusCode.OK);
-//    }
-//    catch (Exception e)
-//    {
-//        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
-//    };
-//}
-
-//public class BlobStorageMultipartStreamProvider : MultipartStreamProvider
-//{
-//    public string ConnectionString { get; set; }
-//    public string ContainerName { get; set; }
-//    public string FileName { get; set; }
-
-//    public override Stream GetStream(HttpContent parent, HttpContentHeaders headers)
-//    {
-//        Stream stream = null;
-//        var contentDisposition = headers.ContentDisposition;
-
-//        if (contentDisposition == null) return null;
-//        if (String.IsNullOrWhiteSpace(contentDisposition.FileName)) return null;
-
-//        var storageAccount = CloudStorageAccount.Parse(ConnectionString);
-//        var blobClient = storageAccount.CreateCloudBlobClient();
-//        var blobContainer = blobClient.GetContainerReference(ContainerName);
-
-//        blobContainer.CreateIfNotExists();
-//        blobContainer.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
-
-//        var blob = blobContainer.GetBlockBlobReference(FileName);
-//        stream = blob.OpenWrite();
-//        return stream;
-//    }
-//}
