@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,10 +18,10 @@ namespace webapi.Services
             _fileStorage = new Dictionary<string, object>();
         }
 
-        public void Add(string key, object value, Stream stream)
+        public void Add(string key, object value, IFormFile file)
         {
             _responseStorage.Add(key, value);
-            _fileStorage.Add(key, stream);
+            _fileStorage.Add(key, file);
         }
 
         public object[] Get(string key)
@@ -39,12 +40,23 @@ namespace webapi.Services
 
             _responseStorage.Remove(key);
             _fileStorage.Remove(key);
+
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "images", key + ".jpg");
+            File.Delete(filePath);
         }
 
         public void Clear()
         {
             _responseStorage.Clear();
             _fileStorage.Clear();
+
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "images");
+            if (!Directory.Exists(filePath)) return;
+
+            foreach (string file in Directory.GetFiles(filePath, "*.jpg"))
+            {
+                File.Delete(file);
+            }
         }
     }
 }

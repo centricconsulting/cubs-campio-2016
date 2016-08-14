@@ -32,8 +32,20 @@ namespace webapi.Controllers
         [HttpPost("Upload")]
         public async Task<IActionResult> Upload(IFormFile file)
         {
+            // saving file locally
+            var key = ("file_" + DateTime.UtcNow.ToString().ToLowerInvariant()).Replace(":", "_").Replace("/", "_").Replace(" ", "");
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "images", key + ".jpg");
+            string dirPath = Path.Combine(Directory.GetCurrentDirectory(), "images");
+            if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                var inputStream = file.OpenReadStream();
+                await inputStream.CopyToAsync(fileStream);
+            }
+
             var response = new ResponseModel();
-            using (Stream s = file.OpenReadStream())
+            using (Stream s = new FileStream(filePath, FileMode.Open))
             {
                 // DETECT faces in photo
                 var faces = await _faceService.DetectAsync(s);
@@ -68,10 +80,10 @@ namespace webapi.Controllers
                     }
                     response.Faces.Add(faceModel);
                 }
-                var key = "file_" + DateTime.UtcNow.ToString().ToLowerInvariant();
-                response.Key = key;
-                _storageService.Add(key, response, s);
             }
+
+            response.Key = key;
+            _storageService.Add(key, response, file);
 
             return Ok(response);
         }
@@ -82,19 +94,23 @@ namespace webapi.Controllers
         {
             // get the file from Storage
             var storageObject = _storageService.Get(key) as object[];
-            var faces = storageObject[0] as List<FaceModel>;
-            var fileStream = storageObject[1] as Stream;
+            var responseModel = storageObject[0] as ResponseModel;
+            var file = storageObject[1] as IFormFile;
 
             // create new person
             CreatePersonResult person = await _faceService.CreatePersonAsync(_personGroupId, name);
 
-            // register face - person
-            await _faceService.AddPersonFaceAsync(_personGroupId, person.PersonId, fileStream, null, faces[faceIndex].FaceRectangle);
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "images", key + ".jpg");
+            using (Stream fileStream = new FileStream(filePath, FileMode.Open))
+            {
+                // register face - person
+                await _faceService.AddPersonFaceAsync(_personGroupId, person.PersonId, fileStream, null, responseModel.Faces[faceIndex].FaceRectangle);
+            }
 
             // train the person group
             await _faceService.TrainPersonGroupAsync(_personGroupId);
 
-            // waith until training is done
+            // wait until training is done
             TrainingStatus trainingStatus = null;
             while (true)
             {
