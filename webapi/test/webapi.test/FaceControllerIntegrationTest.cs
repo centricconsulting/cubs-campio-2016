@@ -26,6 +26,7 @@ namespace webapi.test
         public FaceControllerIntegrationTest(ITestOutputHelper output)
         {
             _output = output;
+            Services.GetRequiredService<IStorageService>().Clear();
         }
 
         [Fact]
@@ -45,8 +46,8 @@ namespace webapi.test
             // assert
             Assert.IsAssignableFrom<IActionResult>(result);
             Assert.IsType(typeof(OkObjectResult), result);
-            Assert.IsType(typeof(List<FaceModel>), ((OkObjectResult)result).Value);
-            Assert.True((((OkObjectResult)result).Value as List<FaceModel>).Count == 4);
+            Assert.IsType(typeof(ResponseModel), ((OkObjectResult)result).Value);
+            Assert.True((((OkObjectResult)result).Value as ResponseModel).Faces.Count == 4);
         }
     }
 

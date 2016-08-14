@@ -34,5 +34,11 @@ namespace webapi.Services
             _responseStorage.Remove(key);
             _fileStorage.Remove(key);
         }
+
+        public void Clear()
+        {
+            _responseStorage.Clear();
+            _fileStorage.Clear();
+        }
     }
 }

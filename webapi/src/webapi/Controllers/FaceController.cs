@@ -32,7 +32,7 @@ namespace webapi.Controllers
         [HttpPost("Upload")]
         public async Task<IActionResult> Upload(IFormFile file)
         {
-            var response = new List<FaceModel>();
+            var response = new ResponseModel();
             using (Stream s = file.OpenReadStream())
             {
                 // DETECT faces in photo
@@ -66,9 +66,11 @@ namespace webapi.Controllers
                             faceModel.Candidates.Add(new CandidateModel { PersonId = candidateId.ToString(), Confidence = identifyResult.Candidates[i].Confidence, PersonName = person.Name });
                         }
                     }
-                    response.Add(faceModel);
+                    response.Faces.Add(faceModel);
                 }
-                _storageService.Add("file_" + DateTime.UtcNow.ToString().ToLowerInvariant(), response, s);
+                var key = "file_" + DateTime.UtcNow.ToString().ToLowerInvariant();
+                response.Key = key;
+                _storageService.Add(key, response, s);
             }
 
             return Ok(response);

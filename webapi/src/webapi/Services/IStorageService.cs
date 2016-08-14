@@ -7,5 +7,6 @@ namespace webapi.Services
         void Add(string key, object value, Stream stream);
         void Remove(string key);
         object[] Get(string key);
+        void Clear();
     }
 }

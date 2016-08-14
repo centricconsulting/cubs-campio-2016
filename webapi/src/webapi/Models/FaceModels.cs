@@ -6,6 +6,18 @@ using System.Threading.Tasks;
 
 namespace webapi.Models
 {
+    public class ResponseModel
+    {
+        public ResponseModel ()
+        {
+            Faces = new List<FaceModel>();
+        }
+
+        public string Key { get; set; }
+
+        public List<FaceModel> Faces { get; set; }
+    }
+
     public class FaceModel : Face
     {
         public FaceModel(Face face)
