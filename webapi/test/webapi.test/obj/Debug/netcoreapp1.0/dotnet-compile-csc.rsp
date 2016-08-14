@@ -8,8 +8,8 @@
 -debug:full
 -nostdlib
 -nologo
-"D:\Projects\centricconsulting\cubs-campio-2016\webapi\test\webapi.test\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
--out:"D:\Projects\centricconsulting\cubs-campio-2016\webapi\test\webapi.test\bin\Debug\netcoreapp1.0\webapi.test.dll"
+"C:\Projects\Centric\cubs-campio-2016\webapi\test\webapi.test\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
+-out:"C:\Projects\Centric\cubs-campio-2016\webapi\test\webapi.test\bin\Debug\netcoreapp1.0\webapi.test.dll"
 -r:"C:\Users\setia\.nuget\packages\castle.core.netcore\3.3.4-beta8\lib\dotnet\Castle.Core.dll"
 -r:"C:\Users\setia\.nuget\packages\dotnet-test-xunit\2.2.0-preview2-build1029\lib\netcoreapp1.0\dotnet-test-xunit.dll"
 -r:"C:\Users\setia\.nuget\packages\Microsoft.ApplicationInsights\2.1.0\lib\dotnet5.4\Microsoft.ApplicationInsights.dll"
@@ -201,8 +201,8 @@
 -r:"C:\Users\setia\.nuget\packages\xunit.extensibility.execution\2.2.0-beta2-build3300\lib\netstandard1.0\xunit.execution.dotnet.dll"
 -r:"C:\Users\setia\.nuget\packages\xunit.runner.reporters\2.2.0-beta2-build3300\lib\netstandard1.1\xunit.runner.reporters.dotnet.dll"
 -r:"C:\Users\setia\.nuget\packages\xunit.runner.utility\2.2.0-beta2-build3300\lib\netstandard1.1\xunit.runner.utility.dotnet.dll"
--r:"D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\bin\Debug\netcoreapp1.0\webapi.dll"
-"D:\Projects\centricconsulting\cubs-campio-2016\webapi\test\webapi.test\FaceControllerIntegrationTest.cs"
-"D:\Projects\centricconsulting\cubs-campio-2016\webapi\test\webapi.test\FaceControllerUnitTest.cs"
-"D:\Projects\centricconsulting\cubs-campio-2016\webapi\test\webapi.test\TestApplicationEnvironment.cs"
-"D:\Projects\centricconsulting\cubs-campio-2016\webapi\test\webapi.test\Properties\AssemblyInfo.cs"
+-r:"C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\bin\Debug\netcoreapp1.0\webapi.dll"
+"C:\Projects\Centric\cubs-campio-2016\webapi\test\webapi.test\FaceControllerIntegrationTest.cs"
+"C:\Projects\Centric\cubs-campio-2016\webapi\test\webapi.test\FaceControllerUnitTest.cs"
+"C:\Projects\Centric\cubs-campio-2016\webapi\test\webapi.test\TestApplicationEnvironment.cs"
+"C:\Projects\Centric\cubs-campio-2016\webapi\test\webapi.test\Properties\AssemblyInfo.cs"

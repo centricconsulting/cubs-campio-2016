@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using webapi.Models;
+using webapi.Services;
 
 namespace webapi.test
 {
@@ -57,7 +58,7 @@ namespace webapi.test
                     new Person { PersonId = personId, Name = "Johannes" }
                     ));
 
-            var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), faceServiceMock.Object);
+            var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), faceServiceMock.Object, Services.GetRequiredService<IStorageService>());
 
             // act 
             var result = await obj.Upload(fileMock.Object);

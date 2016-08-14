@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using webapi.Models;
+using webapi.Services;
 
 namespace webapi.test
 {
@@ -36,7 +37,7 @@ namespace webapi.test
             var fs = new FileStream(sampleFile, FileMode.Open); fs.Position = 0;
             fileMock.Setup(m => m.OpenReadStream()).Returns(fs);
 
-            var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), Services.GetRequiredService<IFaceServiceClient>());
+            var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), Services.GetRequiredService<IFaceServiceClient>(), Services.GetRequiredService<IStorageService>());
 
             // act 
             var result = await obj.Upload(fileMock.Object);

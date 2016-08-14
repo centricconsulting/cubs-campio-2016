@@ -8,6 +8,8 @@ using Microsoft.ProjectOxford.Face;
 using Microsoft.AspNetCore.Http;
 using Microsoft.ProjectOxford.Face.Contract;
 using webapi.Models;
+using webapi.Services;
+using System;
 
 namespace webapi.Controllers
 {
@@ -16,12 +18,14 @@ namespace webapi.Controllers
     {
         private IHostingEnvironment _environment;
         private IFaceServiceClient _faceService;
+        private IStorageService _storageService;
         private string _personGroupId = "campio";
 
-        public FaceController(IHostingEnvironment environment, IFaceServiceClient faceService)
+        public FaceController(IHostingEnvironment environment, IFaceServiceClient faceService, IStorageService storageService)
         {
             _environment = environment;
             _faceService = faceService;
+            _storageService = storageService;
         }
 
         // POST api/face/upload
@@ -64,6 +68,7 @@ namespace webapi.Controllers
                     }
                     response.Add(faceModel);
                 }
+                _storageService.Add("file_" + DateTime.UtcNow.ToString().ToLowerInvariant(), response, s);
             }
 
             return Ok(response);
@@ -71,8 +76,41 @@ namespace webapi.Controllers
 
         // POST api/face/register
         [HttpPost("Register")]
-        public async Task<IActionResult> Register()
+        public async Task<IActionResult> Register(string key, int faceIndex, string name)
         {
+            // get the file from Storage
+            var storageObject = _storageService.Get(key) as object[];
+            var faces = storageObject[0] as List<FaceModel>;
+            var fileStream = storageObject[1] as Stream;
+
+            // create new person
+            CreatePersonResult person = await _faceService.CreatePersonAsync(_personGroupId, name);
+
+            // register face - person
+            await _faceService.AddPersonFaceAsync(_personGroupId, person.PersonId, fileStream, null, faces[faceIndex].FaceRectangle);
+
+            // train the person group
+            await _faceService.TrainPersonGroupAsync(_personGroupId);
+
+            // waith until training is done
+            TrainingStatus trainingStatus = null;
+            while (true)
+            {
+                trainingStatus = await _faceService.GetPersonGroupTrainingStatusAsync(_personGroupId);
+                if (trainingStatus.Status != Status.Running) { break; }
+                await Task.Delay(1000);
+            }
+
+            // remove from storage
+            _storageService.Remove(key);
+            return Ok();
+        }
+
+        // POST api/face/acknowledge
+        [HttpPost("Acknowledge")]
+        public IActionResult Acknowledge(string key)
+        {
+            _storageService.Remove(key);
             return Ok();
         }
     }
