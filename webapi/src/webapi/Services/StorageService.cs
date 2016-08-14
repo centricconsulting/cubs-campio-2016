@@ -25,12 +25,18 @@ namespace webapi.Services
 
         public object[] Get(string key)
         {
+            if (!_responseStorage.ContainsKey(key))
+                return null;
+
             var response = new object[] { _responseStorage[key], _fileStorage[key] };
             return response;
         }
 
-        public void Remove (string key)
+        public void Remove(string key)
         {
+            if (!_responseStorage.ContainsKey(key))
+                return;
+
             _responseStorage.Remove(key);
             _fileStorage.Remove(key);
         }
