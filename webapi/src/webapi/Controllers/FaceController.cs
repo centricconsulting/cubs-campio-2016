@@ -28,6 +28,13 @@ namespace webapi.Controllers
             _storageService = storageService;
         }
 
+        // GET api/face/directory
+        [HttpGet("ImagePath")]
+        public string ImagePath()
+        {
+            return Directory.GetCurrentDirectory();
+        }
+
         // POST api/face/upload
         [HttpPost("Upload")]
         public async Task<IActionResult> Upload(IFormFile file)
