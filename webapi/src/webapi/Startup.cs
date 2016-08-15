@@ -40,6 +40,9 @@ namespace webapi
 
             // Inject Face API client implementation
             services.AddFaceService();
+
+            // Inject storage service
+            services.AddStorageService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

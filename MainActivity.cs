@@ -8,23 +8,22 @@ using Android.Provider;
 using System.Collections.Generic;
 using Android.Content.PM;
 using System;
-
-
+using Android.Util;
 
 namespace CarmeraUseRecipe
 {
-	[Activity (Label = "CarmeraUseRecipe", Icon = "@mipmap/icon")]
+	[Activity(Label = "CarmeraUseRecipe", Icon = "@mipmap/icon")]
 	public class MainActivity : Activity
 	{
 		int count = 1;
 		private ImageView _imageView;
 
-		protected override void OnCreate (Bundle bundle)
+		protected override void OnCreate(Bundle bundle)
 		{
-			base.OnCreate (bundle);
+			base.OnCreate(bundle);
 
 			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
+			SetContentView(Resource.Layout.Main);
 
 
 			if (!IsThereAnAppToTakePictures()) return;
@@ -32,52 +31,56 @@ namespace CarmeraUseRecipe
 			CreateDirectoryForPictures();
 
 			_imageView = FindViewById<ImageView>(Resource.Id.imageView1);
-			Button takeNewPhotoButton = FindViewById<Button>(Resource.Id.btnTakeNewPhoto);
+			Button myButton = FindViewById<Button>(Resource.Id.myButton);
 
 			OpenCameraAndTakePicture();
-			takeNewPhotoButton.Click += TakeAPicture;
+			myButton.Click += TakeAPicture;
 
 		}
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
-			base.OnActivityResult (requestCode, resultCode, data);
+			base.OnActivityResult(requestCode, resultCode, data);
 
-			Intent mediaScanIntent = new Intent (Intent.ActionMediaScannerScanFile);
-			Android.Net.Uri contentUri = Android.Net.Uri.FromFile (App._file);
-			mediaScanIntent.SetData (contentUri);
-			SendBroadcast (mediaScanIntent);
+			Intent mediaScanIntent = new Intent(Intent.ActionMediaScannerScanFile);
+			Android.Net.Uri contentUri = Android.Net.Uri.FromFile(App._file);
+			mediaScanIntent.SetData(contentUri);
+			SendBroadcast(mediaScanIntent);
 
 			int height = Resources.DisplayMetrics.HeightPixels;
-			int width = Resources.DisplayMetrics.WidthPixels; 
-			App.bitmap = App._file.Path.LoadAndResizeBitmap (width, height);
+			int width = Resources.DisplayMetrics.WidthPixels;
+			App.bitmap = App._file.Path.LoadAndResizeBitmap(width, height);
 
-			if (App.bitmap != null) {
-				_imageView.SetImageBitmap (App.bitmap);
+			if (App.bitmap != null)
+			{
+				_imageView.SetImageBitmap(App.bitmap);
 				App.bitmap = null;
 			}
 
 			var response = FaceInterface.ReturnFaceFromPicture(App._file);
+			if (response.IsAMatch == true)
+				populateFacialMatch(response);
 
-			GC.Collect ();
+			GC.Collect();
 		}
 
 		private void CreateDirectoryForPictures()
 		{
-			App._dir = new File (
-				Android.OS.Environment.GetExternalStoragePublicDirectory (
+			App._dir = new File(
+				Android.OS.Environment.GetExternalStoragePublicDirectory(
 					Android.OS.Environment.DirectoryPictures), "CameraAppDemo");
 
-			if (!App._dir.Exists ()) {
-				App._dir.Mkdirs ();
+			if (!App._dir.Exists())
+			{
+				App._dir.Mkdirs();
 			}
 		}
 
 		private bool IsThereAnAppToTakePictures()
 		{
-			Intent intent = new Intent (MediaStore.ActionImageCapture);
-			IList<ResolveInfo> availableActivities = 
-				PackageManager.QueryIntentActivities (intent, PackageInfoFlags.MatchDefaultOnly);
+			Intent intent = new Intent(MediaStore.ActionImageCapture);
+			IList<ResolveInfo> availableActivities =
+				PackageManager.QueryIntentActivities(intent, PackageInfoFlags.MatchDefaultOnly);
 			return availableActivities != null && availableActivities.Count > 0;
 		}
 
@@ -93,6 +96,7 @@ namespace CarmeraUseRecipe
 
 		}
 
+		// Yeah, its not great. still figuring out how to do it without the same method two different ways. 
 		private void TakeAPicture(object sender, EventArgs eventArgs)
 		{
 			Intent intent = new Intent(MediaStore.ActionImageCapture);
@@ -101,6 +105,16 @@ namespace CarmeraUseRecipe
 			App._file = new File(App._dir, string.Format("myPhoto_{0}.jpg", Guid.NewGuid()));
 			intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(App._file));
 			StartActivityForResult(intent, 0);
+		}
+
+		private void populateFacialMatch(FacialRecognitionResponse response)
+		{
+			TextView NameOfResponse = FindViewById<TextView>(Resource.Id.NameOfResponse);
+			string responseString = response.ConfidenceLevel.ToString() + "% Match: " + response.Name;
+
+			NameOfResponse.Text = responseString;
+
+			NameOfResponse.SetTextSize(ComplexUnitType.Dip, 21f);
 		}
 	}
 }

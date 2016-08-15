@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using webapi.Services;
 
 namespace webapi
 {
@@ -13,6 +14,13 @@ namespace webapi
         {
             IFaceServiceClient faceServiceClient = new FaceServiceClient("6eca31c3a55a4968bfae16fc35fb54df");
             serviceCollection.AddSingleton<IFaceServiceClient>(new Func<IServiceProvider, IFaceServiceClient>(p => faceServiceClient));
+            return serviceCollection;
+        }
+
+        public static IServiceCollection AddStorageService(this IServiceCollection serviceCollection)
+        {
+            IStorageService storageService = new StorageService();
+            serviceCollection.AddSingleton<IStorageService>(new Func<IServiceProvider, IStorageService>(p => storageService));
             return serviceCollection;
         }
     }

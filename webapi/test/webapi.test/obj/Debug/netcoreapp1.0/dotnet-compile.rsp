@@ -1,5 +1,5 @@
---temp-output:D:\Projects\centricconsulting\cubs-campio-2016\webapi\test\webapi.test\obj\Debug\netcoreapp1.0\
---out:D:\Projects\centricconsulting\cubs-campio-2016\webapi\test\webapi.test\bin\Debug\netcoreapp1.0\webapi.test.dll
+--temp-output:C:\Projects\Centric\cubs-campio-2016\webapi\test\webapi.test\obj\Debug\netcoreapp1.0\
+--out:C:\Projects\Centric\cubs-campio-2016\webapi\test\webapi.test\bin\Debug\netcoreapp1.0\webapi.test.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -203,8 +203,8 @@
 --reference:C:\Users\setia\.nuget\packages\xunit.extensibility.execution\2.2.0-beta2-build3300\lib\netstandard1.0\xunit.execution.dotnet.dll
 --reference:C:\Users\setia\.nuget\packages\xunit.runner.reporters\2.2.0-beta2-build3300\lib\netstandard1.1\xunit.runner.reporters.dotnet.dll
 --reference:C:\Users\setia\.nuget\packages\xunit.runner.utility\2.2.0-beta2-build3300\lib\netstandard1.1\xunit.runner.utility.dotnet.dll
---reference:D:\Projects\centricconsulting\cubs-campio-2016\webapi\src\webapi\bin\Debug\netcoreapp1.0\webapi.dll
-D:\Projects\centricconsulting\cubs-campio-2016\webapi\test\webapi.test\FaceControllerIntegrationTest.cs
-D:\Projects\centricconsulting\cubs-campio-2016\webapi\test\webapi.test\FaceControllerUnitTest.cs
-D:\Projects\centricconsulting\cubs-campio-2016\webapi\test\webapi.test\TestApplicationEnvironment.cs
-D:\Projects\centricconsulting\cubs-campio-2016\webapi\test\webapi.test\Properties\AssemblyInfo.cs
+--reference:C:\Projects\Centric\cubs-campio-2016\webapi\src\webapi\bin\Debug\netcoreapp1.0\webapi.dll
+C:\Projects\Centric\cubs-campio-2016\webapi\test\webapi.test\FaceControllerIntegrationTest.cs
+C:\Projects\Centric\cubs-campio-2016\webapi\test\webapi.test\FaceControllerUnitTest.cs
+C:\Projects\Centric\cubs-campio-2016\webapi\test\webapi.test\TestApplicationEnvironment.cs
+C:\Projects\Centric\cubs-campio-2016\webapi\test\webapi.test\Properties\AssemblyInfo.cs

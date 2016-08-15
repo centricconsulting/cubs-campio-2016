@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using webapi.Models;
+using webapi.Services;
 
 namespace webapi.test
 {
@@ -21,10 +22,13 @@ namespace webapi.test
     {
         private readonly ITestOutputHelper _output;
         public IServiceProvider Services => TestApplicationEnvironment.Services;
+        private IStorageService _storageService;
 
         public FaceControllerUnitTest(ITestOutputHelper output)
         {
             _output = output;
+            _storageService = Services.GetRequiredService<IStorageService>();
+            _storageService.Clear();
         }
 
         [Fact]
@@ -33,42 +37,64 @@ namespace webapi.test
             // arrange - mocking IFormFile using a memory stream
             var fileMock = new Mock<IFormFile>();
             string sampleFile = Path.Combine(Directory.GetCurrentDirectory(), "data", "joe_family.jpg");
-            var fs = new FileStream(sampleFile, FileMode.Open);
-            fs.Position = 0;
-            fileMock.Setup(m => m.OpenReadStream()).Returns(fs);
+            using (var fs = new FileStream(sampleFile, FileMode.Open))
+            {
+                fs.Position = 0;
+                fileMock.Setup(m => m.OpenReadStream()).Returns(fs);
 
-            // mocking Face Service
-            Guid faceId = Guid.NewGuid();
-            Guid personId = Guid.NewGuid();
-            var faceServiceMock = new Mock<IFaceServiceClient>();
-            faceServiceMock.Setup(f => f.DetectAsync(It.IsAny<Stream>(), true, false, null)).Returns(
-                Task.FromResult(new[] {
+                // mocking Face Service
+                Guid faceId = Guid.NewGuid();
+                Guid personId = Guid.NewGuid();
+                var faceServiceMock = new Mock<IFaceServiceClient>();
+                faceServiceMock.Setup(f => f.DetectAsync(It.IsAny<Stream>(), true, false, null)).Returns(
+                    Task.FromResult(new[] {
                     new Face { FaceId = faceId }
-                }));
-            faceServiceMock.Setup(f => f.IdentifyAsync(It.IsAny<string>(), It.IsAny<Guid[]>(), 1)).Returns(
-                Task.FromResult(new[] {
+                    }));
+                faceServiceMock.Setup(f => f.IdentifyAsync(It.IsAny<string>(), It.IsAny<Guid[]>(), 1)).Returns(
+                    Task.FromResult(new[] {
                     new IdentifyResult {
                         FaceId = faceId,
                         Candidates = new [] { new Candidate { Confidence = 0.8, PersonId = personId } }
                     }
-                }));
-            faceServiceMock.Setup(f => f.GetPersonAsync(It.IsAny<string>(), It.IsAny<Guid>())).Returns(
-                Task.FromResult(
-                    new Person { PersonId = personId, Name = "Johannes" }
-                    ));
+                    }));
+                faceServiceMock.Setup(f => f.GetPersonAsync(It.IsAny<string>(), It.IsAny<Guid>())).Returns(
+                    Task.FromResult(
+                        new Person { PersonId = personId, Name = "Johannes" }
+                        ));
 
-            var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), faceServiceMock.Object);
+                var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), faceServiceMock.Object, _storageService);
 
-            // act 
-            var result = await obj.Upload(fileMock.Object);
+                // act 
+                var result = await obj.Upload(fileMock.Object);
+
+                // assert
+                Assert.IsAssignableFrom<IActionResult>(result);
+                Assert.IsType(typeof(OkObjectResult), result);
+                Assert.IsType(typeof(ResponseModel), ((OkObjectResult)result).Value);
+                Assert.True((((OkObjectResult)result).Value as ResponseModel).Faces.Count == 1);
+                Assert.True((((OkObjectResult)result).Value as ResponseModel).Faces[0].Candidates.Count == 1);
+                Assert.Equal("Johannes", (((OkObjectResult)result).Value as ResponseModel).Faces[0].Candidates[0].PersonName);
+            }
+        }
+
+        
+        [Fact]
+        public void acknowledge_RESULT_OK()
+        {
+            // arrange
+            var key = "test_key";
+            _storageService.Add(key, "whatever object", null);
+            Guid faceId = Guid.NewGuid();
+            Guid personId = Guid.NewGuid();
+            var faceServiceMock = new Mock<IFaceServiceClient>();
+            var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), faceServiceMock.Object, _storageService);
+
+            // act
+            var result = obj.Acknowledge(key);
 
             // assert
-            Assert.IsAssignableFrom<IActionResult>(result);
-            Assert.IsType(typeof(OkObjectResult), result);
-            Assert.IsType(typeof(List<FaceModel>), ((OkObjectResult)result).Value);
-            Assert.True((((OkObjectResult)result).Value as List<FaceModel>).Count == 1);
-            Assert.True((((OkObjectResult)result).Value as List<FaceModel>)[0].Candidates.Count == 1);
-            Assert.Equal("Johannes", (((OkObjectResult)result).Value as List<FaceModel>)[0].Candidates[0].PersonName);
+            var storageObject = _storageService.Get(key);
+            Assert.Null(storageObject);
         }
     }
 
