@@ -44,9 +44,9 @@ namespace webapi
                     {
                         Version = "v1",
                         Title = "Face API",
-                        Description = "CAMP I/O Face API",
+                        Description = "Cantric CAMP I/O Face API",
                         TermsOfService = "NA",
-                        Contact = new Contact() { Name = "Johannes Setiabudi", Email = "joe.setiabudi@centricconsulting.com", Url = "https://setiabud.blogspot.com" }
+                        Contact = new Contact() { Name = "Johannes Setiabudi", Email = "joe.setiabudi@centricconsulting.com", Url = "http://www.centricconsulting.com" }
                     });
 
                     o.OperationFilter<FormFileOperationFilter>();

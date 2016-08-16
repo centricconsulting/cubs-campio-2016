@@ -58,7 +58,7 @@ namespace webapi.Controllers
             using (Stream s = new FileStream(filePath, FileMode.Open))
             {
                 // DETECT faces in photo
-                var faces = await _faceService.DetectAsync(s);
+                var faces = await _faceService.DetectAsync(s, true, false, new[] { FaceAttributeType.Age, FaceAttributeType.Gender, FaceAttributeType.Glasses });
 
                 // if no face detected, return with NotFound status
                 if (!faces.Any()) { return NotFound(); }
