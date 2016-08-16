@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.Swagger.Model;
+using webapi.Filters;
 
 namespace webapi
 {
@@ -36,6 +38,21 @@ namespace webapi
             services.AddMvc();
 
             // Inject an implementation of ISwaggerProvider with defaulted settings applied
+            services.ConfigureSwaggerGen(o =>
+                {
+                    //o.SingleApiVersion(new Info
+                    //{
+                    //    Version = "v1",
+                    //    Title = "Face API",
+                    //    Description = "CAMP I/O Face API",
+                    //    TermsOfService = "NA",
+                    //    Contact = new Contact() { Name = "Johannes Setiabudi", Email = "joe.setiabudi@centricconsulting.com", Url = "https://setiabud.blogspot.com" }
+                    //});
+
+                    o.OperationFilter<FormFileOperationFilter>();
+
+                    //o.DescribeAllEnumsAsStrings();
+                });
             services.AddSwaggerGen();
 
             // Inject Face API client implementation
