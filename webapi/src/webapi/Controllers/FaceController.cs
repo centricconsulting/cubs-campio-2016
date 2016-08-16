@@ -10,6 +10,7 @@ using Microsoft.ProjectOxford.Face.Contract;
 using webapi.Models;
 using webapi.Services;
 using System;
+using Microsoft.Net.Http.Headers;
 
 namespace webapi.Controllers
 {
@@ -40,8 +41,10 @@ namespace webapi.Controllers
         public async Task<IActionResult> Upload(IFormFile file)
         {
             // saving file locally
-            var key = ("file_" + DateTime.UtcNow.ToString().ToLowerInvariant()).Replace(":", "_").Replace("/", "_").Replace(" ", "");
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "images", key + ".jpg");
+            var fileName = GetFileName(file);
+            var fileExtension = (fileName.Split('.')).Last();
+            var key = ("file_" + DateTime.UtcNow.ToString().ToLowerInvariant()).Replace(":", "_").Replace("/", "_").Replace(" ", "") + "." + fileExtension;
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "images", key);
             string dirPath = Path.Combine(Directory.GetCurrentDirectory(), "images");
             if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
 
@@ -107,7 +110,7 @@ namespace webapi.Controllers
             // create new person
             CreatePersonResult person = await _faceService.CreatePersonAsync(_personGroupId, name);
 
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "images", key + ".jpg");
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "images", key);
             using (Stream fileStream = new FileStream(filePath, FileMode.Open))
             {
                 // register face - person
@@ -138,5 +141,9 @@ namespace webapi.Controllers
             _storageService.Remove(key);
             return Ok();
         }
+
+        private static string GetFileName(IFormFile file) => 
+            file.Headers == null ? file.FileName.Split('\\').Last() :
+            ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
     }
 }

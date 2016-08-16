@@ -41,6 +41,8 @@ namespace webapi.test
             {
                 fs.Position = 0;
                 fileMock.Setup(m => m.OpenReadStream()).Returns(fs);
+                fileMock.SetupAllProperties();
+                fileMock.SetupGet(p => p.FileName).Returns(sampleFile);
 
                 // mocking Face Service
                 Guid faceId = Guid.NewGuid();

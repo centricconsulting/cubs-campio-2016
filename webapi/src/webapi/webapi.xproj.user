@@ -4,6 +4,6 @@
     <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
     <AutoRefresh>false</AutoRefresh>
     <NameOfLastUsedPublishProfile>face-webapi - Web Deploy</NameOfLastUsedPublishProfile>
-    <ShowAllFiles>false</ShowAllFiles>
+    <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
 </Project>

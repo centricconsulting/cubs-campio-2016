@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using webapi.Models;
 using webapi.Services;
+using Microsoft.AspNetCore.Http.Internal;
 
 namespace webapi.test
 {
@@ -35,17 +36,14 @@ namespace webapi.test
         public async Task upload_single_face_single_candidate_RESULT_OK()
         {
             // arrange - mocking IFormFile using a memory stream
-            var fileMock = new Mock<IFormFile>();
             string sampleFile = Path.Combine(Directory.GetCurrentDirectory(), "data", "joe_family.jpg");
             using (var fs = new FileStream(sampleFile, FileMode.Open))
             {
-                fs.Position = 0;
-                fileMock.Setup(m => m.OpenReadStream()).Returns(fs);
-
+                FormFile f = new FormFile(fs, 0, fs.Length, "file", fs.Name);
                 var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), Services.GetRequiredService<IFaceServiceClient>(), _storageService);
 
                 // act 
-                var result = await obj.Upload(fileMock.Object);
+                var result = await obj.Upload(f);
 
                 // assert
                 Assert.IsAssignableFrom<IActionResult>(result);
@@ -60,31 +58,28 @@ namespace webapi.test
         {
             // arrange - mocking IFormFile using a memory stream
             var obj = new FaceController(Services.GetRequiredService<IHostingEnvironment>(), Services.GetRequiredService<IFaceServiceClient>(), _storageService);
-            var fileMock = new Mock<IFormFile>();
             string sampleFile = Path.Combine(Directory.GetCurrentDirectory(), "data", "joe_family.jpg");
+            ResponseModel uploadResult;
             using (var fs = new FileStream(sampleFile, FileMode.Open))
             {
-                fs.Position = 0;
-                fileMock.Setup(m => m.OpenReadStream()).Returns(fs);
-                var uploadResultTemp = await obj.Upload(fileMock.Object);
-                var uploadResult = ((OkObjectResult)uploadResultTemp).Value as ResponseModel;
-
-                // act
-                var registerResult = await obj.Register(uploadResult.Key, 1, "Helen");
-
-                // assert
-                var storageObject = _storageService.Get(uploadResult.Key);
-                Assert.Null(storageObject);
+                FormFile f = new FormFile(fs, 0, fs.Length, "file", fs.Name);
+                var uploadResultTemp = await obj.Upload(f);
+                uploadResult = ((OkObjectResult)uploadResultTemp).Value as ResponseModel;
             }
 
+            // act
+            var registerResult = await obj.Register(uploadResult.Key, 1, "Helen");
+
+            // assert
+            var storageObject = _storageService.Get(uploadResult.Key);
+            Assert.Null(storageObject);
+
             // redetect & reidentify
-            var fileMockNext = new Mock<IFormFile>();
             string sampleFileNext = Path.Combine(Directory.GetCurrentDirectory(), "data", "joe_family.jpg");
             using (var fsNext = new FileStream(sampleFileNext, FileMode.Open))
             {
-                fsNext.Position = 0;
-                fileMockNext.Setup(m => m.OpenReadStream()).Returns(fsNext);
-                var uploadResultTemp = await obj.Upload(fileMockNext.Object);
+                FormFile fNext = new FormFile(fsNext, 0, fsNext.Length, "file", fsNext.Name);
+                var uploadResultTemp = await obj.Upload(fNext);
                 Assert.Equal("Helen", (((OkObjectResult)uploadResultTemp).Value as ResponseModel).Faces[1].Candidates[0].PersonName);
             }
         }
