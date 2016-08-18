@@ -15,6 +15,10 @@ using System.Collections.Generic;
 using webapi.Models;
 using webapi.Services;
 using Microsoft.AspNetCore.Http.Internal;
+using Microsoft.AspNetCore.TestHost;
+using System.Net.Http.Headers;
+using System.Net.Http;
+using System.Text;
 
 namespace webapi.test
 {
@@ -23,6 +27,7 @@ namespace webapi.test
     {
         private readonly ITestOutputHelper _output;
         public IServiceProvider Services => TestApplicationEnvironment.Services;
+        public TestServer TestServer => TestApplicationEnvironment.Server;
         private IStorageService _storageService;
 
         public FaceControllerIntegrationTest(ITestOutputHelper output)
@@ -50,6 +55,81 @@ namespace webapi.test
                 Assert.IsType(typeof(OkObjectResult), result);
                 Assert.IsType(typeof(ResponseModel), ((OkObjectResult)result).Value);
                 Assert.True((((OkObjectResult)result).Value as ResponseModel).Faces.Count == 4);
+            }
+        }
+
+        [Fact]
+        public async Task http_upload_single_face_single_candidate_RESULT_OK()
+        {
+            // arrange - mocking IFormFile using a memory stream
+            string sampleFile = Path.Combine(Directory.GetCurrentDirectory(), "data", "joe_family.jpg");
+            using (var fs = new FileStream(sampleFile, FileMode.Open))
+            {
+                using (var client = TestServer.CreateClient())
+                {
+                    client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    var content = new MultipartFormDataContent();
+
+                    // initialize file/stream content
+                    var fileContent = new StreamContent(fs);
+
+                    // initialize content disposition for the stream content
+                    var contentDisposition = new ContentDispositionHeaderValue("form-data"); // must "form-data" since we are posting as form
+                    contentDisposition.Name = "file"; // must match with parameter name, which in this case is "file"
+                    contentDisposition.FileName = "joe_family.jpg"; // file name or path
+
+                    // set content disposition 
+                    fileContent.Headers.ContentDisposition = contentDisposition;
+
+                    // set content type to "multipart/form-data"
+                    fileContent.Headers.ContentType = new MediaTypeHeaderValue("multipart/form-data");
+
+                    // add stream content into multipart content
+                    content.Add(fileContent);
+
+                    // act
+                    var result = await client.PostAsync("/api/face/upload", content);
+
+                    // assert
+                    Assert.NotNull(result);
+                }
+            }
+        }
+
+        [Fact]
+        public async Task http_acknowledge_RESULT_OK()
+        {
+            // arrange - mocking IFormFile using a memory stream
+            using (var client = TestServer.CreateClient())
+            {
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var content = new MultipartFormDataContent();
+
+                // initialize string content
+                var stringContent = new StringContent("abc");
+
+                // initialize content disposition for the string content
+                var contentDisposition = new ContentDispositionHeaderValue("form-data"); // must "form-data" since we are posting as form
+                contentDisposition.Name = "key"; // must match with parameter name, which in this case is "key"
+
+                // set content disposition 
+                stringContent.Headers.ContentDisposition = contentDisposition;
+
+                // set content type to "multipart/form-data"
+                stringContent.Headers.ContentType = new MediaTypeHeaderValue("multipart/form-data");
+
+                // add stream content into multipart content
+                content.Add(stringContent);
+
+                // act
+                var result = await client.PostAsync("/api/face/acknowledge", content);
+
+                // assert
+                Assert.NotNull(result);
             }
         }
 

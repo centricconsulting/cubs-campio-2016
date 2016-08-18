@@ -27,8 +27,8 @@ namespace CarmeraUseRecipe
 
 				var content = new MultipartFormDataContent();
 				content.Add(new StreamContent(fileStream), "\"file\"", string.Format("\"{0}\"", fileInfo.Name));
-
-				var result = await httpClient.PostAsync("https://face-webapi.azurewebsites.net/api/Face/Upload?file=", content);
+                
+				var result = await httpClient.PostAsync("http://localhost:51241/api/face/Upload?file=", content);
 
 
 						if (result.IsSuccessStatusCode)

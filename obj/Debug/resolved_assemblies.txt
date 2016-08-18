@@ -3,6 +3,7 @@ C:\Projects\Centric\cubs-campio-2016\obj\Debug\android\assets\Java.Interop.dll
 C:\Projects\Centric\cubs-campio-2016\obj\Debug\android\assets\Mono.Android.dll
 C:\Projects\Centric\cubs-campio-2016\obj\Debug\android\assets\System.Core.dll
 C:\Projects\Centric\cubs-campio-2016\obj\Debug\android\assets\System.dll
+C:\Projects\Centric\cubs-campio-2016\obj\Debug\android\assets\System.Net.Http.dll
 C:\Projects\Centric\cubs-campio-2016\obj\Debug\android\assets\System.Xml.dll
 C:\Projects\Centric\cubs-campio-2016\obj\Debug\android\assets\mscorlib.dll
 C:\Projects\Centric\cubs-campio-2016\obj\Debug\android\assets\System.Threading.dll
@@ -18,4 +19,3 @@ C:\Projects\Centric\cubs-campio-2016\obj\Debug\android\assets\System.Runtime.Ext
 C:\Projects\Centric\cubs-campio-2016\obj\Debug\android\assets\System.Reflection.Extensions.dll
 C:\Projects\Centric\cubs-campio-2016\obj\Debug\android\assets\System.Runtime.Serialization.dll
 C:\Projects\Centric\cubs-campio-2016\obj\Debug\android\assets\System.ServiceModel.Internals.dll
-C:\Projects\Centric\cubs-campio-2016\obj\Debug\android\assets\System.Net.Http.dll

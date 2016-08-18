@@ -13,13 +13,18 @@ namespace webapi.test
             InitTestServer();
         }
 
+        private static TestServer _server;
+
         internal static void InitTestServer()
         {
             var builder = new WebHostBuilder()
                 .UseStartup<Startup>();
             var testServer = new TestServer(builder);
             Services = builder.Build().Services;
+            _server = testServer;
         }
+
+        public static TestServer Server {  get { return _server; } }
 
         public static IServiceProvider Services { get; private set; }
 
