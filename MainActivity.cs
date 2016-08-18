@@ -54,10 +54,10 @@ namespace CarmeraUseRecipe
 			if (App.bitmap != null)
 			{
 				_imageView.SetImageBitmap(App.bitmap);
+
+
 				var x = new FaceInterface();
-				var response = x.ReturnFace(App.bitmap, App._file.AbsolutePath);
-
-
+				var response =  x.ReturnFace(App.bitmap, App._file.AbsolutePath);
 
 					//.ReturnFaceFromPicture(App._file);
 
@@ -66,10 +66,10 @@ namespace CarmeraUseRecipe
 				//App.bitmap = null;
 			}
 
-
-
 			GC.Collect();
 		}
+
+
 
 		private void CreateDirectoryForPictures()
 		{
@@ -117,11 +117,11 @@ namespace CarmeraUseRecipe
 		private void populateFacialMatch(FacialRecognitionResponse response)
 		{
 			TextView NameOfResponse = FindViewById<TextView>(Resource.Id.NameOfResponse);
-			string responseString = response.ConfidenceLevel.ToString() + "% Match: " + response.Name;
+			//string responseString = response.ConfidenceLevel.ToString() + "% Match: " + response.Name;
 
-			NameOfResponse.Text = responseString;
+			//NameOfResponse.Text = responseString;
 
-			NameOfResponse.SetTextSize(ComplexUnitType.Dip, 21f);
+			//NameOfResponse.SetTextSize(ComplexUnitType.Dip, 21f);
 		}
 	}
 }
