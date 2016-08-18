@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Android.Content.PM;
 using System;
 using Android.Util;
+using System.Threading.Tasks;
 
 namespace CarmeraUseRecipe
 {
@@ -38,7 +39,7 @@ namespace CarmeraUseRecipe
 
 		}
 
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		protected override async void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
 
@@ -53,22 +54,21 @@ namespace CarmeraUseRecipe
 
 			if (App.bitmap != null)
 			{
+				var match = await GetFacialResponse();
 				_imageView.SetImageBitmap(App.bitmap);
-
-
-				var x = new FaceInterface();
-				var response =  x.ReturnFace(App.bitmap, App._file.AbsolutePath);
-
-					//.ReturnFaceFromPicture(App._file);
-
-				//if (response.IsAMatch == true)
-				//	populateFacialMatch(response);
-				//App.bitmap = null;
+				if (match.IsAMatch == true)
+					populateFacialMatch(match);
 			}
 
 			GC.Collect();
 		}
 
+		private async Task<FacialRecognitionResponse> GetFacialResponse()
+		{
+			var x = new FaceInterface();
+			var response = await x.ReturnFace(App.bitmap, App._file.AbsolutePath);
+			return response;
+		}
 
 
 		private void CreateDirectoryForPictures()
@@ -117,11 +117,11 @@ namespace CarmeraUseRecipe
 		private void populateFacialMatch(FacialRecognitionResponse response)
 		{
 			TextView NameOfResponse = FindViewById<TextView>(Resource.Id.NameOfResponse);
-			//string responseString = response.ConfidenceLevel.ToString() + "% Match: " + response.Name;
+			string responseString =  "Match: " + response.Name;
 
-			//NameOfResponse.Text = responseString;
+			NameOfResponse.Text = responseString;
 
-			//NameOfResponse.SetTextSize(ComplexUnitType.Dip, 21f);
+			NameOfResponse.SetTextSize(ComplexUnitType.Dip, 21f);
 		}
 	}
 }

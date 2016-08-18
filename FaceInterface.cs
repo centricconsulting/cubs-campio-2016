@@ -9,6 +9,8 @@ using Android.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Json;
+using System.Text;
+using System.Collections.Generic;
 
 namespace CarmeraUseRecipe
 {
@@ -16,7 +18,7 @@ namespace CarmeraUseRecipe
 	{
 		public async Task<FacialRecognitionResponse> ReturnFace(Bitmap bitmap, string path)
 		{
-			
+
 			byte[] bitmapData;
 			var stream = new MemoryStream();
 			bitmap.Compress(Bitmap.CompressFormat.Jpeg, 0, stream);
@@ -40,33 +42,59 @@ namespace CarmeraUseRecipe
 
 			if (response.IsSuccessStatusCode)
 			{
+
 				string content = await response.Content.ReadAsStringAsync();
 
 				var json = JsonValue.Parse(content);
+
 				var data = json["faces"][0];
 				var face = new FacialRecognitionResponse();
 
 				foreach (var dataItem in data)
-					
 				{
-					if (json["candidates"].Count > 0)
+					if (data["candidates"].Count == 0)
+						await RegisterFace(json["key"]);
+				
+					else if (data["candidates"].Count > 0)
 					{
 						face.IsAMatch = true;
-						face.Name = data["Name"];
+
+						var candidate = data["candidates"][0];
+						face.Name = candidate["personName"];
 					}
 					else
 					{
 						face.IsAMatch = false;
 					}
 				}
-
-					return face;
+				return face;
 				//return content;
 			}
 			return null;
 		}
 
-		}
 
+
+
+		public async Task<string> RegisterFace(string key)
+		{
+			using (var client = new HttpClient())
+			{
+				var formContent = new FormUrlEncodedContent(new[]
+				 {
+				   new KeyValuePair<string,string>("name", "Jonathan Flatt"),
+					new KeyValuePair<string,string>("faceIndex", "0"),
+					new KeyValuePair<string,string>("key", key),
+		   });
+
+				var postResponse = await client.PostAsync("http://face-webapi.azurewebsites.net/api/Face/Register", formContent);
+				postResponse.EnsureSuccessStatusCode();
+
+				string resonse = await postResponse.Content.ReadAsStringAsync();
+			}
+
+			return null;
+		}
 	}
+}
 
