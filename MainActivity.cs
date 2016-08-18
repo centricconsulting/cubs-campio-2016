@@ -54,12 +54,19 @@ namespace CarmeraUseRecipe
 			if (App.bitmap != null)
 			{
 				_imageView.SetImageBitmap(App.bitmap);
-				App.bitmap = null;
+				var x = new FaceInterface();
+				var response = x.ReturnFace(App.bitmap, App._file.AbsolutePath);
+
+
+
+					//.ReturnFaceFromPicture(App._file);
+
+				//if (response.IsAMatch == true)
+				//	populateFacialMatch(response);
+				//App.bitmap = null;
 			}
 
-			var response = FaceInterface.ReturnFaceFromPicture(App._file);
-			if (response.IsAMatch == true)
-				populateFacialMatch(response);
+
 
 			GC.Collect();
 		}
