@@ -5,11 +5,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace webapi.Models
+namespace common.Models
 {
     public class ResponseModel
     {
-        public ResponseModel ()
+        public ResponseModel()
         {
             Faces = new List<FaceModel>();
         }

@@ -4055,6 +4055,20 @@
           "lib/netstandard1.1/xunit.runner.utility.dotnet.dll": {}
         }
       },
+      "common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "Microsoft.ProjectOxford.Face": "1.1.0",
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "netstandard1.6/common.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/common.dll": {}
+        }
+      },
       "webapi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
@@ -4073,7 +4087,8 @@
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
           "Microsoft.NETCore.App": "1.0.0",
           "Microsoft.ProjectOxford.Face": "1.1.0",
-          "Swashbuckle": "6.0.0-beta901"
+          "Swashbuckle": "6.0.0-beta901",
+          "common": "1.0.0"
         },
         "compile": {
           "netcoreapp1.0/webapi.dll": {}
@@ -10553,6 +10568,11 @@
         "xunit.runner.utility.nuspec"
       ]
     },
+    "common/1.0.0": {
+      "type": "project",
+      "path": "../../src/common/project.json",
+      "msbuildProject": "../../src/common/common.xproj"
+    },
     "webapi/1.0.0": {
       "type": "project",
       "path": "../../src/webapi/project.json",
@@ -10564,6 +10584,7 @@
       "Microsoft.AspNet.WebApi.Client >= 5.2.2",
       "Microsoft.AspNetCore.TestHost >= 1.0.0",
       "System.Diagnostics.TraceSource >= 4.0.0",
+      "common >= 1.0.0-*",
       "dotnet-test-xunit >= 2.2.0-preview2-build1029",
       "moq.netcore >= 4.4.0-beta8",
       "webapi >= 1.0.0-*",

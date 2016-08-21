@@ -2230,7 +2230,7 @@
           "ref/netstandard1.3/System.IO.Compression.ZipFile.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.IO.Compression.ZipFile.dll": {}
         }
       },
       "System.IO.FileSystem/4.0.1": {
@@ -3589,6 +3589,20 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
+        }
+      },
+      "common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "Microsoft.ProjectOxford.Face": "1.1.0",
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "netstandard1.6/common.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/common.dll": {}
         }
       }
     }
@@ -9494,6 +9508,11 @@
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
       ]
+    },
+    "common/1.0.0": {
+      "type": "project",
+      "path": "../common/project.json",
+      "msbuildProject": "../common/common.xproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -9512,7 +9531,8 @@
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.0.0",
       "Microsoft.NETCore.App >= 1.0.0",
       "Microsoft.ProjectOxford.Face >= 1.1.0",
-      "Swashbuckle >= 6.0.0-beta901"
+      "Swashbuckle >= 6.0.0-beta901",
+      "common >= 1.0.0-*"
     ],
     ".NETCoreApp,Version=v1.0": []
   },

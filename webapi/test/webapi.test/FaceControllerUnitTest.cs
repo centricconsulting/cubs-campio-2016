@@ -11,8 +11,7 @@ using Microsoft.ProjectOxford.Face;
 using Microsoft.ProjectOxford.Face.Contract;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using webapi.Models;
+using common.Models;
 using webapi.Services;
 
 namespace webapi.test

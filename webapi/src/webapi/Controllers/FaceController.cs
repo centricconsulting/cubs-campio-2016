@@ -7,10 +7,10 @@ using System.IO;
 using Microsoft.ProjectOxford.Face;
 using Microsoft.AspNetCore.Http;
 using Microsoft.ProjectOxford.Face.Contract;
-using webapi.Models;
 using webapi.Services;
 using System;
 using Microsoft.Net.Http.Headers;
+using common.Models;
 
 namespace webapi.Controllers
 {

@@ -12,7 +12,7 @@ using Microsoft.ProjectOxford.Face.Contract;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
-using webapi.Models;
+using common.Models;
 using webapi.Services;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.TestHost;
