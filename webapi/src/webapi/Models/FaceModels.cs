@@ -1,6 +1,7 @@
 ﻿using Microsoft.ProjectOxford.Face.Contract;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +19,7 @@ namespace webapi.Models
         public List<FaceModel> Faces { get; set; }
     }
 
+    [DebuggerDisplay("{FaceAttributes.Gender}, Age {FaceAttributes.Age}")]
     public class FaceModel : Face
     {
         public FaceModel(Face face)
@@ -32,6 +34,7 @@ namespace webapi.Models
         public List<CandidateModel> Candidates { get; set; }
     }
 
+    //[DebuggerDisplay("PersonName {PersonName}")]
     public class CandidateModel
     {
         public string PersonId { get; set; }
